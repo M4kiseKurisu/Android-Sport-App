@@ -1,7 +1,8 @@
 package com.example.myapplication.group;
 
 import android.app.AlertDialog;
-import android.app.Activity;
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -9,12 +10,20 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.myapplication.R;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Locale;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -55,19 +64,30 @@ public class GroupFindFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_group_find, container, false);
 
         Button detail = view.findViewById(R.id.group_find_more);
-
         detail.setOnClickListener(v -> {
             AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getActivity());
             LayoutInflater inflater1 = GroupFindFragment.this.getLayoutInflater();
-            View dialogView = inflater1.inflate(R.layout.group_find_detail, null);
+            View dialogView = inflater1.inflate(R.layout.dialog_group_activity_detail, null);
 
-            TextView title = dialogView.findViewById(R.id.title);
-            title.setText("大运村 impart 活动");
+            TextView title = dialogView.findViewById(R.id.group_activity_title);
+            title.setText("大运村桌游聚会");
 
-            TextView description = dialogView.findViewById(R.id.description);
+            TextView creator = dialogView.findViewById(R.id.group_activity_creator);
+            creator.setText("吴浩宇");
+
+            TextView person = dialogView.findViewById(R.id.group_activity_person);
+            person.setText("15/200");
+
+            TextView time = dialogView.findViewById(R.id.group_activity_time);
+            time.setText("2023-11-11 19:00-22:00");
+
+            TextView location = dialogView.findViewById(R.id.group_activity_location);
+            location.setText("大运村广场");
+
+            TextView description = dialogView.findViewById(R.id.group_activity_content);
             description.setText("这是一场\"浩\"劫\n");
 
-            Button closeButton = dialogView.findViewById(R.id.close_button);
+            Button closeButton = dialogView.findViewById(R.id.group_activity_close_button);
 
             dialogBuilder.setView(dialogView);
 
@@ -77,6 +97,92 @@ public class GroupFindFragment extends Fragment {
             alertDialog.show();
         });
 
+        ImageButton create = view.findViewById(R.id.group_activity_create_button);
+        create.setOnClickListener(v -> {
+            AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getActivity());
+            LayoutInflater inflater1 = GroupFindFragment.this.getLayoutInflater();
+            View dialogView = inflater1.inflate(R.layout.dialog_group_activity_create, null);
+            dialogBuilder.setView(dialogView);
+            AlertDialog alertDialog = dialogBuilder.create();
+
+            // 实现时间选择
+            Calendar c = Calendar.getInstance();
+            int year = c.get(Calendar.YEAR);
+            int month = c.get(Calendar.MONTH);
+            int day = c.get(Calendar.DAY_OF_MONTH);
+
+            TextView startTimeText = dialogView.findViewById(R.id.group_activity_create_startTime);
+            TextView endTimeText = dialogView.findViewById(R.id.group_activity_create_endTime);
+            startTimeText.setOnClickListener(v_ -> {
+                DatePickerDialog datePickerDialog = new DatePickerDialog(getContext(),
+                        (tempView, yearOfYear, monthOfYear, dayOfMonth) -> {
+                            c.set(yearOfYear, monthOfYear, dayOfMonth);
+                            int hour = c.get(Calendar.HOUR_OF_DAY);
+                            int minute = c.get(Calendar.MINUTE);
+                            // 创建一个新的时间选择器对话框对象
+                            TimePickerDialog timePickerDialog = new TimePickerDialog(getContext(),
+                                    (timerView, hourOfDay, minuteOfDay) -> {
+                                        c.set(Calendar.HOUR_OF_DAY, hourOfDay);
+                                        c.set(Calendar.MINUTE, minuteOfDay);
+
+                                        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault());
+                                        startTimeText.setText(format.format(c.getTime()));
+                                    }, hour, minute, true);
+
+                            timePickerDialog.show();
+                        }, year, month, day);
+
+                datePickerDialog.show();
+            });
+            endTimeText.setOnClickListener(v_ -> {
+                DatePickerDialog datePickerDialog = new DatePickerDialog(getContext(),
+                        (tempView, yearOfYear, monthOfYear, dayOfMonth) -> {
+                            c.set(yearOfYear, monthOfYear, dayOfMonth);
+                            int hour = c.get(Calendar.HOUR_OF_DAY);
+                            int minute = c.get(Calendar.MINUTE);
+                            // 创建一个新的时间选择器对话框对象
+                            TimePickerDialog timePickerDialog = new TimePickerDialog(getContext(),
+                                    (timerView, hourOfDay, minuteOfDay) -> {
+                                        c.set(Calendar.HOUR_OF_DAY, hourOfDay);
+                                        c.set(Calendar.MINUTE, minuteOfDay);
+
+                                        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault());
+                                        endTimeText.setText(format.format(c.getTime()));
+                                    }, hour, minute, true);
+
+                            timePickerDialog.show();
+                        }, year, month, day);
+
+                datePickerDialog.show();
+            });
+
+
+            // 下拉类别菜单
+            Spinner spinner = dialogView.findViewById(R.id.group_activity_create_category);
+            ArrayList<String> dataList = new ArrayList<>();
+            dataList.add("篮球");
+            dataList.add("排球");
+            dataList.add("TD");
+
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item, dataList);
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            spinner.setAdapter(adapter);
+            spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                }
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
+                }
+            });
+
+
+            // 关闭按钮
+            Button closeButton = dialogView.findViewById(R.id.group_activity_close_button);
+            closeButton.setOnClickListener(v1 -> alertDialog.dismiss());
+
+            alertDialog.show();
+        });
         return view;
     }
 }

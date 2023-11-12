@@ -27,7 +27,7 @@
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:text="攻略分享"
-                    android:textColor="@color/black"
+                    android:textColor="@color/group_black"
                     android:textSize="20dp"
                     android:textStyle="bold"
                     android:layout_marginLeft="20dp"/>
@@ -92,7 +92,7 @@
                     android:layout_height="50dp"
                     android:text="这个攻略分享的标题"
                     android:textSize="18dp"
-                    android:textColor="@color/black"
+                    android:textColor="@color/group_black"
                     android:textStyle="bold"
                     android:gravity="center"/>
 
@@ -163,7 +163,7 @@
                     android:layout_height="50dp"
                     android:text="这个攻略分享的标题"
                     android:textSize="18dp"
-                    android:textColor="@color/black"
+                    android:textColor="@color/group_black"
                     android:textStyle="bold"
                     android:gravity="center"/>
 
@@ -234,7 +234,7 @@
                     android:layout_height="50dp"
                     android:text="这个攻略分享的标题"
                     android:textSize="18dp"
-                    android:textColor="@color/black"
+                    android:textColor="@color/group_black"
                     android:textStyle="bold"
                     android:gravity="center"/>
 
@@ -305,7 +305,7 @@
                     android:layout_height="50dp"
                     android:text="这个攻略分享的标题"
                     android:textSize="18dp"
-                    android:textColor="@color/black"
+                    android:textColor="@color/group_black"
                     android:textStyle="bold"
                     android:gravity="center"/>
 
@@ -376,7 +376,7 @@
                     android:layout_height="50dp"
                     android:text="这个攻略分享的标题"
                     android:textSize="18dp"
-                    android:textColor="@color/black"
+                    android:textColor="@color/group_black"
                     android:textStyle="bold"
                     android:gravity="center"/>
 
@@ -447,7 +447,7 @@
                     android:layout_height="50dp"
                     android:text="这个攻略分享的标题"
                     android:textSize="18dp"
-                    android:textColor="@color/black"
+                    android:textColor="@color/group_black"
                     android:textStyle="bold"
                     android:gravity="center"/>
 
@@ -518,7 +518,7 @@
                     android:layout_height="50dp"
                     android:text="这个攻略分享的标题"
                     android:textSize="18dp"
-                    android:textColor="@color/black"
+                    android:textColor="@color/group_black"
                     android:textStyle="bold"
                     android:gravity="center"/>
 
@@ -589,7 +589,7 @@
                     android:layout_height="50dp"
                     android:text="这个攻略分享的标题"
                     android:textSize="18dp"
-                    android:textColor="@color/black"
+                    android:textColor="@color/group_black"
                     android:textStyle="bold"
                     android:gravity="center"/>
 
@@ -660,7 +660,7 @@
                     android:layout_height="50dp"
                     android:text="这个攻略分享的标题"
                     android:textSize="18dp"
-                    android:textColor="@color/black"
+                    android:textColor="@color/group_black"
                     android:textStyle="bold"
                     android:gravity="center"/>
 
@@ -731,7 +731,7 @@
                     android:layout_height="50dp"
                     android:text="这个攻略分享的标题"
                     android:textSize="18dp"
-                    android:textColor="@color/black"
+                    android:textColor="@color/group_black"
                     android:textStyle="bold"
                     android:gravity="center"/>
 

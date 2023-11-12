@@ -26,7 +26,8 @@
                 android:background="#2193EF"
                 android:padding="18dp"
                 android:scaleType="fitCenter"
-                android:src="@drawable/group_return" />
+                android:src="@drawable/group_return"
+                android:contentDescription="Return button"/>
 
             <TextView
                 android:layout_width="match_parent"
@@ -55,12 +56,12 @@
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigation"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="65dp"
         android:layout_marginStart="0dp"
         android:layout_marginEnd="0dp"
         android:background="#D6D6D6"
-        app:itemIconSize="29dp"
-        app:itemIconTint="@color/group_icon_color_state"
+        app:itemIconSize="28dp"
+        app:itemIconTint="@color/group_nav_icon_state"
         app:itemTextAppearanceActive="@style/GroupNavActive"
         app:itemTextAppearanceInactive="@style/GroupNavInActive"
         app:layout_constraintBottom_toBottomOf="parent"

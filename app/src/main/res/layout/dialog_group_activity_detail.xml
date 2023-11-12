@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?><!-- 文件路径：res/layout/dialog_layout.xml -->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/group_white"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/group_activity_title"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="大运村桌游聚会"
+        android:textColor="@color/group_deepBlue"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical">
+
+        <!--        活动类别        -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:gravity="start|center"
+                android:text="活动类型："
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/group_activity_category"
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:gravity="start|center"
+                android:text="聚会" />
+        </LinearLayout>
+
+        <!--        创建人        -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:gravity="start|center"
+                android:text="发起人："
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/group_activity_creator"
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:gravity="start|center"
+                android:text="15/200" />
+        </LinearLayout>
+
+        <!--        参加人数        -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:gravity="start|center"
+                android:text="参与人数："
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/group_activity_person"
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:gravity="start|center"
+                android:text="15/200" />
+        </LinearLayout>
+
+        <!--        时间          -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:gravity="start|center"
+                android:text="活动时间："
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/group_activity_time"
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:gravity="start|center"
+                android:text="2023-11-11 19:00-22:00" />
+        </LinearLayout>
+
+        <!--        地点          -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:gravity="start|center"
+                android:text="活动地点："
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/group_activity_location"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:gravity="start|center"
+                android:text="大运村广场" />
+        </LinearLayout>
+
+        <!--        详情          -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center|top"
+            android:text="活动介绍："
+            android:textColor="#047C71"
+            android:textSize="19sp"
+            android:textStyle="bold" />
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:background="@color/group_lightBlue"
+            android:padding="5dp">
+
+                <TextView
+                    android:id="@+id/group_activity_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp" />
+
+        </ScrollView>
+
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/group_activity_close_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:layout_marginTop="10dp"
+        android:text="Close"
+        android:textStyle="bold" />
+
+</LinearLayout>
