@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 
-import java.io.Console;
+import com.example.myapplication.tutorial.TutorialActivity;
 
 public class MainActivity extends AppCompatActivity {
     private ImageButton button1;
