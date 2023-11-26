@@ -42,6 +42,7 @@
                 android:gravity="right">
 
                 <Button
+                    android:id="@+id/create"
                     android:layout_width="120dp"
                     android:layout_height="match_parent"
                     android:text="我要分享"
@@ -61,6 +62,7 @@
             android:layout_marginTop="10dp"/>
 
         <LinearLayout
+            android:id="@+id/tutorial_text_1"
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:layout_marginTop="10dp"
@@ -68,6 +70,7 @@
             android:orientation="horizontal">
 
             <ImageButton
+                android:id="@+id/tutorial_1"
                 android:layout_marginLeft="10dp"
                 android:layout_width="0dp"
                 android:layout_weight="4"
@@ -333,12 +336,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
                     android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
                     android:layout_marginRight="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:gravity="right|center"
                     android:text="攻略分类"
                     android:textSize="14dp"
-                    android:gravity="right|center"
-                    android:textStyle="italic"/>
+                    android:textStyle="italic" />
 
             </LinearLayout>
 
