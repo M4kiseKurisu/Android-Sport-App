@@ -29,6 +29,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         //调用SQLiteDatabase中的execSQL（）执行建表语句。
         db.execSQL(CREATE_PERSON);
         //创建成功
+
         Toast.makeText(mContext, "Create succeeded", Toast.LENGTH_SHORT).show();
     }
 
