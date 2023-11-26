@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="data">
+        <item>运动攻略</item>
+        <item>个人感受</item>
+        <item>生活分享</item>
+        <item>city walk指南</item>
+        <item>寻伴交友</item>
+        <item>活动公告</item>
+    </string-array>
+</resources>

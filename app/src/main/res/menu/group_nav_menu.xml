@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/group_nav_find"
+        android:icon="@drawable/group_nav_find"
+        android:title="发现" />
+    <item
+        android:id="@+id/group_nav_my"
+        android:icon="@drawable/group_nav_my"
+        android:title="我的" />
+</menu>
