@@ -184,29 +184,67 @@
         
     </LinearLayout>
 
-
     <LinearLayout
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="240dp"
         android:orientation="vertical">
-        <ScrollView
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fillViewport="true"
-            android:scaleType="fitXY">
+            android:layout_height="80dp"
+            android:background="#6699ff">
 
             <LinearLayout
-                android:id="@+id/verticalLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:scaleType="fitXY">
+                android:layout_width="120dp"
+                android:layout_height="match_parent">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="篮球1"
+                        android:textSize="20dp"
+                        android:gravity="center"/>
             </LinearLayout>
-        </ScrollView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:background="#ffcc00">
+
+            <LinearLayout
+                android:layout_width="120dp"
+                android:layout_height="match_parent">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="篮球2"
+                    android:textSize="20dp"
+                    android:gravity="center"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:background="#00cc00">
+
+            <LinearLayout
+                android:layout_width="120dp"
+                android:layout_height="match_parent">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="篮球3"
+                    android:textSize="20dp"
+                    android:gravity="center"/>
+            </LinearLayout>
+
+        </LinearLayout>
 
     </LinearLayout>
-
 
     <LinearLayout
         android:layout_width="match_parent"

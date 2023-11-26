@@ -14,19 +14,15 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.PopupMenu;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.myapplication.R;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.Locale;
 
 /**
@@ -117,14 +113,13 @@ public class GroupFindFragment extends Fragment {
 
             TextView startTimeText = dialogView.findViewById(R.id.group_activity_create_startTime);
             TextView endTimeText = dialogView.findViewById(R.id.group_activity_create_endTime);
-
             startTimeText.setOnClickListener(v_ -> {
                 DatePickerDialog datePickerDialog = new DatePickerDialog(getContext(),
                         (tempView, yearOfYear, monthOfYear, dayOfMonth) -> {
                             c.set(yearOfYear, monthOfYear, dayOfMonth);
                             int hour = c.get(Calendar.HOUR_OF_DAY);
                             int minute = c.get(Calendar.MINUTE);
-
+                            // 创建一个新的时间选择器对话框对象
                             TimePickerDialog timePickerDialog = new TimePickerDialog(getContext(),
                                     (timerView, hourOfDay, minuteOfDay) -> {
                                         c.set(Calendar.HOUR_OF_DAY, hourOfDay);
@@ -139,36 +134,20 @@ public class GroupFindFragment extends Fragment {
 
                 datePickerDialog.show();
             });
-
             endTimeText.setOnClickListener(v_ -> {
                 DatePickerDialog datePickerDialog = new DatePickerDialog(getContext(),
                         (tempView, yearOfYear, monthOfYear, dayOfMonth) -> {
                             c.set(yearOfYear, monthOfYear, dayOfMonth);
                             int hour = c.get(Calendar.HOUR_OF_DAY);
                             int minute = c.get(Calendar.MINUTE);
-
+                            // 创建一个新的时间选择器对话框对象
                             TimePickerDialog timePickerDialog = new TimePickerDialog(getContext(),
                                     (timerView, hourOfDay, minuteOfDay) -> {
                                         c.set(Calendar.HOUR_OF_DAY, hourOfDay);
                                         c.set(Calendar.MINUTE, minuteOfDay);
 
                                         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault());
-                                        String endTimeString = format.format(c.getTime());
-
-                                        // 验证结束时间是否晚于开始时间
-                                        try {
-                                            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault());
-                                            Date startTime = dateFormat.parse(startTimeText.getText().toString());
-                                            Date endTime = dateFormat.parse(endTimeString);
-
-                                            if (endTime.before(startTime)) {
-                                                Toast.makeText(getContext(), "结束时间不能早于开始时间", Toast.LENGTH_SHORT).show();
-                                            } else {
-                                                endTimeText.setText(endTimeString);
-                                            }
-                                        } catch (ParseException e) {
-                                            e.printStackTrace();
-                                        }
+                                        endTimeText.setText(format.format(c.getTime()));
                                     }, hour, minute, true);
 
                             timePickerDialog.show();
@@ -176,11 +155,14 @@ public class GroupFindFragment extends Fragment {
 
                 datePickerDialog.show();
             });
+
+
             // 下拉类别菜单
             Spinner spinner = dialogView.findViewById(R.id.group_activity_create_category);
-            ArrayList<String> dataList = new ArrayList<>(Arrays.asList("跑步", "羽毛球", "篮球", "足球",
-                    "排球", "乒乓球", "台球", "游泳", "网球", "飞盘", "健身", "TD线", "其他"));
-
+            ArrayList<String> dataList = new ArrayList<>();
+            dataList.add("篮球");
+            dataList.add("排球");
+            dataList.add("TD");
 
             ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item, dataList);
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -189,14 +171,14 @@ public class GroupFindFragment extends Fragment {
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 }
-
                 @Override
                 public void onNothingSelected(AdapterView<?> parent) {
                 }
             });
 
+
             // 关闭按钮
-            Button closeButton = dialogView.findViewById(R.id.group_activity_create_close_button);
+            Button closeButton = dialogView.findViewById(R.id.group_activity_close_button);
             closeButton.setOnClickListener(v1 -> alertDialog.dismiss());
 
             alertDialog.show();

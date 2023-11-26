@@ -7,44 +7,21 @@
     android:orientation="vertical"
     android:padding="16dp">
 
-    <LinearLayout
+    <TextView
+        android:id="@+id/group_activity_title"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:orientation="horizontal">
+        android:gravity="center"
+        android:text="创建活动"
+        android:textColor="@color/group_deepBlue"
+        android:textSize="24sp"
+        android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/group_activity_title"
-            android:layout_width="0dp"
-            android:layout_height="40dp"
-            android:layout_weight="5"
-            android:gravity="right"
-            android:text="创建活动"
-            android:textColor="@color/group_deepBlue"
-            android:textSize="24sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="40dp"
-            android:layout_weight="1"
-            android:textColor="@color/group_deepBlue"
-            android:textSize="24sp"
-            android:textStyle="bold" />
-
-        <Button
-            android:id="@+id/group_activity_create_close_button"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:layout_weight="2"
-            android:text="Close"
-            android:textStyle="bold" />
-    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="30dp"
         android:orientation="vertical">
 
         <EditText
@@ -59,11 +36,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="活动地点" />
-        <EditText
-            android:id="@+id/group_activity_create_desc"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="活动简介" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -136,15 +108,12 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/group_activity_create_confirm_button"
-        android:layout_width="100dp"
-        android:layout_height="35dp"
-        android:layout_gravity="center"
+        android:id="@id/group_activity_close_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
         android:layout_marginTop="20dp"
-        android:background="@color/group_blue"
-        android:text="完成"
-        android:textColor="@color/group_white"
-        android:textSize="18sp"
+        android:text="Close"
         android:textStyle="bold" />
 
 </LinearLayout>
