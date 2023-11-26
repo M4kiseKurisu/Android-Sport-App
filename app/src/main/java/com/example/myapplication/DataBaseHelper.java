@@ -24,6 +24,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         mContext = context;
     }
 
+
     @Override
     public void onCreate(SQLiteDatabase db) {
         //调用SQLiteDatabase中的execSQL（）执行建表语句。
