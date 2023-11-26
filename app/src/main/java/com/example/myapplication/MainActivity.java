@@ -17,10 +17,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        /*button1 = findViewById(R.id.button1);
+        button1 = findViewById(R.id.button1);
         button1.setOnClickListener(new MyClickListener());
         dbHelper = new DataBaseHelper(this, "Person.db", null, 1);
-        Button createDatabase = (Button) findViewById(R.id.create_database);
+        dbHelper.getWritableDatabase();
+        /*Button createDatabase = (Button) findViewById(R.id.create_database);
         createDatabase.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
