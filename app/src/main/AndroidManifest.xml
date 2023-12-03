@@ -20,14 +20,21 @@
             android:name=".clockIn.ClockInActivity"
             android:exported="false" />
         <activity
-            android:name=".group.GroupActivity"
+            android:name=".tutorial.TutorialShow"
             android:exported="false" />
         <activity
-            android:name=".TutorialActivity"
+            android:name=".tutorial.TutorialWrite"
+            android:exported="false" />
+        <activity
+            android:name=".tutorial.TutorialActivity"
+            android:exported="false" />
+        <activity
+            android:name=".group.GroupActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

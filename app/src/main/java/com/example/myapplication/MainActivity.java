@@ -9,14 +9,14 @@ import android.view.View;
 import android.widget.ImageButton;
 
 import com.example.myapplication.clockIn.ClockInActivity;
-
-import java.io.Console;
+import com.example.myapplication.database.DataBaseHelper;
+import com.example.myapplication.tutorial.TutorialActivity;
 
 public class MainActivity extends AppCompatActivity {
     private ImageButton button1;
-    private ImageButton clockInButton;
 
-    @SuppressLint("MissingInflatedId")
+    private ImageButton clockInButton;
+    private DataBaseHelper dbHelper;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,7 +33,17 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
+        button1.setOnClickListener(new MyClickListener());
+        dbHelper = new DataBaseHelper(this, "DataBase.db", null, 1);
+        dbHelper.getWritableDatabase();
+        /*Button createDatabase = (Button) findViewById(R.id.create_database);
+        createDatabase.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//创建或打开现有的数据库
+                dbHelper.getWritableDatabase();
+            }
+        });*/
     }
 
     private class MyClickListener implements View.OnClickListener {
