@@ -23,16 +23,11 @@
             android:exported="false" />
         <activity
             android:name=".group.GroupActivity"
-            android:exported="true">
-
-<<<<<<< HEAD
-        </activity>
+            android:exported="false" />
 
         <activity
             android:name=".LoginActivity"
             android:exported="true">
-=======
->>>>>>> 74b22c92344e5e86a944978e2278d25601b6a13a
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -44,12 +39,10 @@
             android:name=".MainActivity"
             android:exported="false">
 
-            <!-- <intent-filter> -->
-            <!-- <action android:name="android.intent.action.MAIN" /> -->
-
-
-            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
-            <!-- </intent-filter> -->
+            <!--            <intent-filter>-->
+            <!--                <action android:name="android.intent.action.MAIN" />-->
+            <!--                <category android:name="android.intent.category.LAUNCHER" />-->
+            <!--            </intent-filter>-->
         </activity>
     </application>
 

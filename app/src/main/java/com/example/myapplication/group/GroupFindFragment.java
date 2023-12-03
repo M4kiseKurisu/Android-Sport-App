@@ -23,24 +23,20 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
-import android.widget.PopupMenu;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.myapplication.R;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link GroupFindFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class GroupFindFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -252,6 +248,7 @@ public class GroupFindFragment extends Fragment {
                             c.set(yearOfYear, monthOfYear, dayOfMonth);
                             int hour = c.get(Calendar.HOUR_OF_DAY);
                             int minute = c.get(Calendar.MINUTE);
+
                             // 创建一个新的时间选择器对话框对象
                             TimePickerDialog timePickerDialog = new TimePickerDialog(getContext(),
                                     (timerView, hourOfDay, minuteOfDay) -> {
@@ -260,6 +257,22 @@ public class GroupFindFragment extends Fragment {
 
                                         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault());
                                         endTimeText.setText(format.format(c.getTime()));
+                                        String endTimeString = format.format(c.getTime());
+
+                                        // 验证结束时间是否晚于开始时间
+                                        try {
+                                            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault());
+                                            Date startTime = dateFormat.parse(startTimeText.getText().toString());
+                                            Date endTime = dateFormat.parse(endTimeString);
+                                            if (endTime.before(startTime)) {
+                                                Toast.makeText(getContext(), "结束时间不能早于开始时间", Toast.LENGTH_SHORT).show();
+                                                endTimeText.setText("");
+                                            } else {
+                                                endTimeText.setText(endTimeString);
+                                            }
+                                        } catch (ParseException e) {
+                                            e.printStackTrace();
+                                        }
                                     }, hour, minute, true);
 
                             timePickerDialog.show();
@@ -267,6 +280,7 @@ public class GroupFindFragment extends Fragment {
 
                 datePickerDialog.show();
             });
+
             // 下拉类别菜单
             Spinner spinner = dialogView.findViewById(R.id.group_activity_create_category);
             ArrayList<String> dataList = new ArrayList<>(Arrays.asList("跑步", "羽毛球", "篮球", "足球",
@@ -278,6 +292,7 @@ public class GroupFindFragment extends Fragment {
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 }
+
                 @Override
                 public void onNothingSelected(AdapterView<?> parent) {
                 }
