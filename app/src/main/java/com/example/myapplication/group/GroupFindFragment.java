@@ -32,6 +32,7 @@ import com.example.myapplication.R;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Locale;
 
@@ -284,7 +285,7 @@ public class GroupFindFragment extends Fragment {
 
 
             // 关闭按钮
-            Button closeButton = dialogView.findViewById(R.id.group_activity_close_button);
+            Button closeButton = dialogView.findViewById(R.id.group_activity_create_close_button);
             closeButton.setOnClickListener(v1 -> alertDialog.dismiss());
 
             // 确认按钮
