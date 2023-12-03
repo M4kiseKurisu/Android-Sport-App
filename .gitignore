@@ -17,5 +17,5 @@ gradle/
 .idea/
 *.properties
 gradlew*
-settings.gradle.kts
-build.gradle.kts
+/settings.gradle.kts
+/build.gradle.kts
