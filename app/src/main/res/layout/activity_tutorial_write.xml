@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#f0f0f0"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp">
+
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="创建分享"
+                    android:textColor="@color/group_black"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:layout_marginLeft="20dp"/>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:gravity="right">
+
+                    <Button
+                        android:layout_width="120dp"
+                        android:layout_height="match_parent"
+                        android:text="确认分享"
+                        android:textSize="20dp"
+                        android:textColor="#ffffff"
+                        android:background="@drawable/activity_greenbutton"
+                        android:textStyle="bold"
+                        android:layout_marginRight="20dp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#888888"
+            android:layout_marginTop="10dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="90px"
+            android:layout_marginTop="20px">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="分享标题："
+                android:textColor="@color/group_black"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                android:layout_marginLeft="20dp"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="30px"
+                android:layout_marginRight="30px"
+                android:background="@drawable/activity_editview"
+                android:singleLine="true">
+
+            </EditText>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="900px"
+            android:layout_marginTop="40px">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/activity_editview"
+                android:layout_marginLeft="20px"
+                android:layout_marginRight="20px"
+                android:gravity="top"
+                android:inputType="textMultiLine"
+                android:scrollbars="vertical"
+                android:hint="输入文字">
+
+            </EditText>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="90px"
+            android:layout_marginTop="20px">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="攻略分类："
+                android:textColor="@color/group_black"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                android:layout_marginLeft="20dp"/>
+
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:entries="@array/data"
+                android:spinnerMode="dialog">
+
+
+            </Spinner>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</LinearLayout>
