@@ -26,12 +26,12 @@ public class TutorialActivity extends AppCompatActivity {
 
         tutorial_text_1 = findViewById(R.id.tutorial_text_1);
 
-        if (!set) {
-            LinearLayout.LayoutParams para;
-            para = (LinearLayout.LayoutParams) tutorial_text_1.getLayoutParams();
-            para.height=0;
-            tutorial_text_1.setLayoutParams(para);
-        }
+//        if (!set) {
+//            LinearLayout.LayoutParams para;
+//            para = (LinearLayout.LayoutParams) tutorial_text_1.getLayoutParams();
+//            para.height=0;
+//            tutorial_text_1.setLayoutParams(para);
+//        }
 
 
         create = findViewById(R.id.create);

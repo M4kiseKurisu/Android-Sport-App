@@ -42,6 +42,7 @@
                 android:gravity="right">
 
                 <TextView
+                    android:id="@+id/tutorial_writer_name"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:gravity="center"
@@ -84,6 +85,7 @@
                     android:layout_marginLeft="20dp"/>
 
                 <TextView
+                    android:id="@+id/tutorial_category"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:gravity="center"
@@ -207,6 +209,57 @@
             android:layout_height="1dp"
             android:background="#888888"
             android:layout_marginTop="10dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="400px"
+            android:layout_marginTop="20px"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="4"
+                    android:layout_height="wrap_content"
+                    android:text="显示评论id"
+                    android:layout_marginTop="24px"
+                    android:layout_marginBottom="24px"
+                    android:textSize="20dp"/>
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="90px"
+                    android:layout_marginTop="20px"
+                    android:layout_marginRight="20px"
+                    android:text="点赞"
+                    android:textColor="#ffffff"
+                    android:textSize="18dp"
+                    android:background="@drawable/activity_greenbutton"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="400px"
+                android:background="@drawable/activity_editview"
+                android:layout_marginLeft="20px"
+                android:layout_marginRight="20px"
+                android:gravity="top"
+                android:inputType="textMultiLine"
+                android:scrollbars="vertical"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right">
+            </LinearLayout>
+
+        </LinearLayout>
 
     </LinearLayout>
 
