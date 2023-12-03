@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.myapplication.database;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -80,11 +80,10 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     private Context mContext;
 
     //构造方法：第一个参数Context，第二个参数数据库名，第三个参数cursor允许我们在查询数据的时候返回一个自定义的光标位置，一般传入的都是null，第四个参数表示目前库的版本号（用于对库进行升级）
-    public DataBaseHelper(Context context, String name, SQLiteDatabase.CursorFactory factory , int version){
-        super(context,name ,factory,version);
+    public DataBaseHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
+        super(context, name, factory, version);
         mContext = context;
     }
-
 
 
     @Override
@@ -106,7 +105,6 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         db.insert("User",null,contentValues);*/
         Toast.makeText(mContext, "Create succeeded", Toast.LENGTH_SHORT).show();
     }
-
 
 
     @Override
