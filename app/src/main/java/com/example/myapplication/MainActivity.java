@@ -3,18 +3,18 @@ package com.example.myapplication;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+<<<<<<< HEAD
 import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
+=======
+>>>>>>> 74b22c92344e5e86a944978e2278d25601b6a13a
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.example.myapplication.database.DataBaseHelper;
 import com.example.myapplication.tutorial.TutorialActivity;
-
-import java.io.Console;
 
 public class MainActivity extends AppCompatActivity {
     private ImageButton button1;

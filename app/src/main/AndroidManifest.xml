@@ -20,22 +20,26 @@
             android:exported="false" />
         <activity
             android:name=".tutorial.TutorialActivity"
+            android:exported="false" />
+        <activity
+            android:name=".group.GroupActivity"
             android:exported="true">
 
+<<<<<<< HEAD
         </activity>
 
         <activity
             android:name=".LoginActivity"
             android:exported="true">
+=======
+>>>>>>> 74b22c92344e5e86a944978e2278d25601b6a13a
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".group.GroupActivity"
-            android:exported="false" />
+
         <activity
             android:name=".MainActivity"
             android:exported="false">
