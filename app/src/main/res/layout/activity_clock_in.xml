@@ -35,11 +35,20 @@
                 android:textColor="#FFFFFF"
                 android:textSize="23dp"
                 android:textStyle="bold" />
+            <Button
+                android:id="@+id/to_clock_in"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="去打卡"
+                android:textStyle="bold"
+                android:textSize="18dp"
+                android:background="@drawable/clock_item_border"
+                android:layout_marginRight="10dp"/>
         </LinearLayout>
     </androidx.appcompat.widget.Toolbar>
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="500dp">
+        android:layout_height="wrap_content">
         <LinearLayout
             android:id="@+id/test"
             android:layout_width="match_parent"
@@ -187,7 +196,6 @@
                     android:paddingTop="5dp"/>
             </LinearLayout>
         </LinearLayout>
-
     </ScrollView>
 
 
@@ -204,53 +212,53 @@
 
 
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:orientation="horizontal"
-        android:background="#D6D6D6">
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="70dp"-->
+<!--        android:orientation="horizontal"-->
+<!--        android:background="#D6D6D6">-->
 
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical">
-            <ImageButton
-                android:id="@+id/ground"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="#00000000"
-                android:scaleType="fitXY"
-                android:src="@drawable/image2"
-                android:layout_gravity="center"/>
-            <TextView
-                android:layout_marginTop="0dp"
-                android:layout_width="match_parent"
-                android:layout_height="20dp"
-                android:text="广场"
-                android:gravity="center"
-                android:textStyle="bold"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical">
-            <ImageButton
-                android:id="@+id/to_clock_in"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="#00000000"
-                android:scaleType="fitXY"
-                android:src="@drawable/image2"
-                android:layout_gravity="center"/>
-            <TextView
-                android:layout_marginTop="0dp"
-                android:layout_width="match_parent"
-                android:layout_height="20dp"
-                android:text="打卡"
-                android:gravity="center"
-                android:textStyle="bold"/>
-        </LinearLayout>
-    </LinearLayout>
+<!--        <LinearLayout-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_weight="1"-->
+<!--            android:orientation="vertical">-->
+<!--            <ImageButton-->
+<!--                android:id="@+id/ground"-->
+<!--                android:layout_width="50dp"-->
+<!--                android:layout_height="50dp"-->
+<!--                android:background="#00000000"-->
+<!--                android:scaleType="fitXY"-->
+<!--                android:src="@drawable/image2"-->
+<!--                android:layout_gravity="center"/>-->
+<!--            <TextView-->
+<!--                android:layout_marginTop="0dp"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="20dp"-->
+<!--                android:text="广场"-->
+<!--                android:gravity="center"-->
+<!--                android:textStyle="bold"/>-->
+<!--        </LinearLayout>-->
+<!--        <LinearLayout-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_weight="1"-->
+<!--            android:orientation="vertical">-->
+<!--            <ImageButton-->
+<!--                android:id="@+id/to_clock_in"-->
+<!--                android:layout_width="50dp"-->
+<!--                android:layout_height="50dp"-->
+<!--                android:background="#00000000"-->
+<!--                android:scaleType="fitXY"-->
+<!--                android:src="@drawable/image2"-->
+<!--                android:layout_gravity="center"/>-->
+<!--            <TextView-->
+<!--                android:layout_marginTop="0dp"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="20dp"-->
+<!--                android:text="打卡"-->
+<!--                android:gravity="center"-->
+<!--                android:textStyle="bold"/>-->
+<!--        </LinearLayout>-->
+<!--    </LinearLayout>-->
 </LinearLayout>

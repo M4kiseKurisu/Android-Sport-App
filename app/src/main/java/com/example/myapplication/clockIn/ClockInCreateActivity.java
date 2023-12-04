@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -44,7 +45,13 @@ public class ClockInCreateActivity extends AppCompatActivity {
         textViewEnd = findViewById(R.id.textViewEnd);
         Button btnStart = findViewById(R.id.clockStart);
         Button btnEnd = findViewById(R.id.clockEnd);
-
+        ImageButton back = findViewById(R.id.clock_in_create_back);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         btnStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -35,7 +35,7 @@ public class ClockInActivity extends AppCompatActivity {
 //        adapter = new ClockAdapter();
 //        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 //        recyclerView.setAdapter(adapter);
-        ImageButton toClockIn = findViewById(R.id.to_clock_in);
+        Button toClockIn = findViewById(R.id.to_clock_in);
         toClockIn.setOnClickListener((new View.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -44,5 +44,6 @@ public class ClockInActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         }));
+
     }
 }
