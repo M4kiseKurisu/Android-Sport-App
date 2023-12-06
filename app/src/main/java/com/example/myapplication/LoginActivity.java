@@ -42,12 +42,11 @@ public class LoginActivity extends AppCompatActivity {
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putInt("UserID", userId);
                 editor.apply();
-                /*将用户id进行储存，需要时，用以下代码进行调用：（注意userId是int，若写到TextView里需要转换成String
-                    SharedPreferences sharedPreferences = getSharedPreferences("LoginInfor", MODE_PRIVATE);
-                    int userId = sharedPreferences.getInt("UserID", -1);
-                    我在MainActivity中进行了示范
-                */
-
+//                /*将用户id进行储存，需要时，用以下代码进行调用：（注意userId是int，若写到TextView里需要转换成String
+//                    SharedPreferences sharedPreferences = getSharedPreferences("LoginInfor", MODE_PRIVATE);
+//                    int userId = sharedPreferences.getInt("UserID", -1);
+//                    我在MainActivity中进行了示范
+//                */
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(intent);
             }
