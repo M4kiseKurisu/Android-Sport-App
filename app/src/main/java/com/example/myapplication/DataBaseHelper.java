@@ -1,7 +1,9 @@
 package com.example.myapplication;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
@@ -12,6 +14,18 @@ public class DataBaseHelper extends SQLiteOpenHelper {
             //primary key 将id列设为主键    autoincrement表示id列是自增长的
             "id integer primary key autoincrement," +
             "name text," +
+            "password text," +
+            "phoneNumber text)";
+    public static final String CREATE_LOGIN = "create table LoginTB(" +
+            "name text primary key," +
+            "password text)";
+    public static final String CREATE_ID = "create table IdTB(" +
+            "name text primary key," +
+            "id integer)";
+
+    public static final String CREATE_FORGETPWD = "create table PasswordTB(" +
+            //primary key 将id列设为主键    autoincrement表示id列是自增长的
+            "phoneNumber text primary key," +
             "password text)";
     public static final String CREATE_CLOCKIN = "create table ClockIn(" +
             //primary key 将id列设为主键    autoincrement表示id列是自增长的
@@ -76,15 +90,71 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         //调用SQLiteDatabase中的execSQL（）执行建表语句。
         db.execSQL(CREATE_USER);
+        db.execSQL(CREATE_LOGIN);
+        db.execSQL(CREATE_FORGETPWD);
         db.execSQL(CREATE_CLOCKIN);
         db.execSQL(CREATE_COMMENT);
         db.execSQL(CREATE_GROUP);
         db.execSQL(CREATE_TRAVELPLAN);
         db.execSQL(CREATE_USERACTIVITYTABLE);
+        db.execSQL(CREATE_ID);
         //创建成功
         Toast.makeText(mContext, "Create succeeded", Toast.LENGTH_SHORT).show();
     }
 
+    public boolean addUser(String username, String password) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("username", username);
+        values.put("password", password);
+
+        long result = db.insert("User", null, values);
+        db.close();
+
+        return result != -1; // 如果result为-1，则插入失败
+    }
+
+    public boolean checkUser(String username, String password) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.query("User", new String[]{"id"}, "name=? AND password=?", new String[]{username, password}, null, null, null);
+
+        int cursorCount = cursor.getCount();
+        cursor.close();
+        db.close();
+
+        if (cursorCount > 0) {
+            return true;
+        }
+        return false;
+    }
+
+    public int getUserIdByUsername(String username) {
+        int userId = -2; // 默认值，表示未找到
+        Cursor cursor = null;
+
+        try {
+            String[] columns = new String[]{"id"}; // 要返回的列
+            String selection = "name = ?"; // 查询条件
+            String[] selectionArgs = new String[]{username}; // 查询条件的参数
+
+            // 执行查询
+            cursor = this.getWritableDatabase().query("IdTB", columns, selection, selectionArgs, null, null, null);
+
+            // 读取查询结果
+            if (cursor != null && cursor.moveToFirst()) {
+                int index = cursor.getColumnIndexOrThrow("id");
+                userId = cursor.getInt(index);
+            }
+        } catch (Exception e) {
+            // 处理异常
+            e.printStackTrace();
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+        }
+        return userId;
+    }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
