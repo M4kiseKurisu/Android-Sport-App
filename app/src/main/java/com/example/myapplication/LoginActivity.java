@@ -41,7 +41,6 @@ public class LoginActivity extends AppCompatActivity {
 
                 if (checkLogin(username,password)) {
                     int userId = loginUser(username, password);
-
                     SharedPreferences sharedPreferences = getSharedPreferences("LoginInfor", MODE_PRIVATE);
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     editor.putInt("UserID", userId);
@@ -58,14 +57,6 @@ public class LoginActivity extends AppCompatActivity {
                     showAlert("登陆失败","用户名或密码不正确");
                 }
 
-            }
-        });
-        buttonRegister.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // 启动注册活动
-                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
-                startActivity(intent);
             }
         });
 
