@@ -3,6 +3,8 @@ package com.example.myapplication.group;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.ContentValues;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -11,7 +13,6 @@ import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import android.text.TextUtils;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -23,24 +24,21 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
-import android.widget.PopupMenu;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.myapplication.R;
+import com.example.myapplication.DataBaseHelper;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link GroupFindFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class GroupFindFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -211,12 +209,44 @@ public class GroupFindFragment extends Fragment {
 
         // 新建活动
         ImageButton create = view.findViewById(R.id.group_activity_create_button);
-        create.setOnClickListener(v -> {
+        createActivityButton(create);
+        return view;
+    }
+
+    private void createActivityButton(ImageButton button) {
+        button.setOnClickListener(v -> {
             AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getActivity());
             LayoutInflater inflater1 = GroupFindFragment.this.getLayoutInflater();
             View dialogView = inflater1.inflate(R.layout.dialog_group_activity_create, null);
             dialogBuilder.setView(dialogView);
             AlertDialog alertDialog = dialogBuilder.create();
+            // 最大人数
+            EditText maxNumEditText = dialogView.findViewById(R.id.group_activity_create_max_num);
+            ImageButton minusButton = dialogView.findViewById(R.id.group_activity_create_minus_button);
+            ImageButton plusButton = dialogView.findViewById(R.id.group_activity_create_plus_button);
+
+            minusButton.setOnClickListener(v13 -> {
+                try {
+                    int maxNum = Integer.parseInt(maxNumEditText.getText().toString());
+                    if (maxNum > 0) {
+                        maxNum--;
+                        maxNumEditText.setText(String.valueOf(maxNum));
+                    }
+                } catch (NumberFormatException e) {
+                    Toast.makeText(getActivity(), "请输入有效的数字", Toast.LENGTH_SHORT).show();
+                }
+            });
+
+            plusButton.setOnClickListener(v12 -> {
+                try {
+                    int maxNum = Integer.parseInt(maxNumEditText.getText().toString());
+                    maxNum++;
+                    maxNumEditText.setText(String.valueOf(maxNum));
+                } catch (NumberFormatException e) {
+                    Toast.makeText(getActivity(), "请输入有效的数字", Toast.LENGTH_SHORT).show();
+                }
+
+            });
 
             // 实现时间选择
             Calendar c = Calendar.getInstance();
@@ -252,6 +282,7 @@ public class GroupFindFragment extends Fragment {
                             c.set(yearOfYear, monthOfYear, dayOfMonth);
                             int hour = c.get(Calendar.HOUR_OF_DAY);
                             int minute = c.get(Calendar.MINUTE);
+
                             // 创建一个新的时间选择器对话框对象
                             TimePickerDialog timePickerDialog = new TimePickerDialog(getContext(),
                                     (timerView, hourOfDay, minuteOfDay) -> {
@@ -260,6 +291,22 @@ public class GroupFindFragment extends Fragment {
 
                                         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault());
                                         endTimeText.setText(format.format(c.getTime()));
+                                        String endTimeString = format.format(c.getTime());
+
+                                        // 验证结束时间是否晚于开始时间
+                                        try {
+                                            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault());
+                                            Date startTime = dateFormat.parse(startTimeText.getText().toString());
+                                            Date endTime = dateFormat.parse(endTimeString);
+                                            if (endTime.before(startTime)) {
+                                                Toast.makeText(getContext(), "结束时间不能早于开始时间", Toast.LENGTH_SHORT).show();
+                                                endTimeText.setText("");
+                                            } else {
+                                                endTimeText.setText(endTimeString);
+                                            }
+                                        } catch (ParseException e) {
+                                            e.printStackTrace();
+                                        }
                                     }, hour, minute, true);
 
                             timePickerDialog.show();
@@ -267,6 +314,7 @@ public class GroupFindFragment extends Fragment {
 
                 datePickerDialog.show();
             });
+
             // 下拉类别菜单
             Spinner spinner = dialogView.findViewById(R.id.group_activity_create_category);
             ArrayList<String> dataList = new ArrayList<>(Arrays.asList("跑步", "羽毛球", "篮球", "足球",
@@ -278,6 +326,7 @@ public class GroupFindFragment extends Fragment {
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 }
+
                 @Override
                 public void onNothingSelected(AdapterView<?> parent) {
                 }
@@ -306,25 +355,46 @@ public class GroupFindFragment extends Fragment {
                     String startTime = startTimeTextView.getText().toString();
                     String endTime = endTimeTextView.getText().toString();
                     String category = categorySpinner.getSelectedItem().toString();
-
-                    Log.d("Form Content", "Name: " + name);
-                    Log.d("Form Content", "Location: " + location);
-                    Log.d("Form Content", "Description: " + desc);
-                    Log.d("Form Content", "Start Time: " + startTime);
-                    Log.d("Form Content", "End Time: " + endTime);
-                    Log.d("Form Content", "Category: " + category);
-
-                    if (TextUtils.isEmpty(name) || TextUtils.isEmpty(location) || TextUtils.isEmpty(desc) ||
-                            TextUtils.isEmpty(startTime) || TextUtils.isEmpty(endTime) || TextUtils.isEmpty(category)) {
-                        Toast.makeText(getContext(), "请输入完整信息", Toast.LENGTH_SHORT).show();
-                    } else {
-                        alertDialog.dismiss();
+                    int maxNum;
+                    try {
+                        maxNum = Integer.parseInt(maxNumEditText.getText().toString());
+                        if (TextUtils.isEmpty(name) || TextUtils.isEmpty(location) || TextUtils.isEmpty(desc) ||
+                                TextUtils.isEmpty(startTime) || TextUtils.isEmpty(endTime) || TextUtils.isEmpty(category)) {
+                            Toast.makeText(getContext(), "请输入完整信息", Toast.LENGTH_SHORT).show();
+                        } else {
+                            alertDialog.dismiss();
+                            Toast.makeText(getContext(), "已成功创建团体", Toast.LENGTH_SHORT).show();
+                        }
+                    } catch (NumberFormatException e) {
+                        Toast.makeText(getActivity(), "请输入有效的数字", Toast.LENGTH_SHORT).show();
                     }
+
                 }
             });
             alertDialog.show();
         });
-        return view;
+    }
+
+    private void addNewGroupActivity() {
+        try (DataBaseHelper dbHelper = new DataBaseHelper(getActivity(), "DataBase.db", null, 1);
+             SQLiteDatabase db = dbHelper.getWritableDatabase()) {
+            ContentValues values = new ContentValues();
+            values.put("activityId", 1);
+            values.put("activityTitle", "活动标题");
+            values.put("activityType", "活动类型");
+            values.put("hostId", 1);
+            values.put("peopleNum", 10);
+            values.put("startTime", "2023-01-01 09:00:00");
+            values.put("endTime", "2023-01-01 12:00:00");
+            values.put("activityIntro", "活动介绍");
+            values.put("activityAdd", "活动地址");
+            values.put("maxNum", 20);
+
+// 插入数据
+            long newRowId = db.insert("Groups", null, values);
+        } catch (Exception e) {
+            // 处理异常
+        }
     }
 
     private int dpToPx(int dp) {
