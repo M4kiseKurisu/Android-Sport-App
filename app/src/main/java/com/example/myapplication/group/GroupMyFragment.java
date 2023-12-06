@@ -265,7 +265,31 @@ public class GroupMyFragment extends Fragment {
             otherButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    exitActivity(activityId);
+                    AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getActivity());
+                    LayoutInflater inflater1 = GroupMyFragment.this.getLayoutInflater();
+                    View dialogView = inflater1.inflate(R.layout.dialog_confirm, null);
+                    TextView titleView = dialogView.findViewById(R.id.confirm_title);
+                    titleView.setText("确认是否退出活动：" + title);
+
+                    dialogBuilder.setView(dialogView);
+                    AlertDialog alertDialog = dialogBuilder.create();
+
+                    Button button = dialogView.findViewById(R.id.confirm_yes_button);
+                    button.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            exitActivity(activityId);
+                            alertDialog.dismiss();
+                        }
+                    });
+                    button = dialogView.findViewById(R.id.confirm_no_button);
+                    button.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            alertDialog.dismiss();
+                        }
+                    });
+                    alertDialog.show();
                 }
             });
         }

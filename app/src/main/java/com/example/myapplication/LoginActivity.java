@@ -59,6 +59,14 @@ public class LoginActivity extends AppCompatActivity {
 
             }
         });
+        buttonRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // 启动注册活动
+                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
 
