@@ -6,6 +6,7 @@ import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.ContentValues;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -96,6 +97,7 @@ public class GroupFindFragment extends Fragment {
         draw(view);
     }
 
+    // 根据数据库渲染页面
     private void draw(View view) {
         LinearLayout linearLayout = view.findViewById(R.id.group_find_container);
         linearLayout.removeAllViews();
@@ -145,6 +147,7 @@ public class GroupFindFragment extends Fragment {
         }
     }
 
+    // 渲染特定组团信息
     private void drawActivity(View view, int activityId, String title, String type, int capacity, int maximum,
                               String startTime, String endTime, String intro, String address, String creatorName) {
         LinearLayout linearLayout = view.findViewById(R.id.group_find_container);
@@ -274,7 +277,31 @@ public class GroupFindFragment extends Fragment {
         joinButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addActivity(activityId);
+                AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getActivity());
+                LayoutInflater inflater1 = GroupFindFragment.this.getLayoutInflater();
+                View dialogView = inflater1.inflate(R.layout.dialog_confirm, null);
+                TextView titleView = dialogView.findViewById(R.id.confirm_title);
+                titleView.setText("确认是否加入活动：" + title);
+
+                dialogBuilder.setView(dialogView);
+                AlertDialog alertDialog = dialogBuilder.create();
+
+                Button button = dialogView.findViewById(R.id.confirm_yes_button);
+                button.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        addActivity(activityId);
+                        alertDialog.dismiss();
+                    }
+                });
+                button = dialogView.findViewById(R.id.confirm_no_button);
+                button.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        alertDialog.dismiss();
+                    }
+                });
+                alertDialog.show();
             }
         });
 

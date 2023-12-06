@@ -31,19 +31,26 @@ public class GroupActivity extends AppCompatActivity {
         bottomNavigation.setOnItemSelectedListener(item -> {
             int id = item.getItemId();
             if (id == R.id.group_nav_find) {
-                viewPager.setCurrentItem(0, false);
+                viewPager.setCurrentItem(0, true);
                 return true;
             } else if (id == R.id.group_nav_my) {
-                viewPager.setCurrentItem(1, false);
+                viewPager.setCurrentItem(1, true);
                 return true;
             }
             return false;
         });
+
+        viewPager.registerOnPageChangeCallback(new ViewPagerPageChangeCallback());
     }
 
+    private class ViewPagerPageChangeCallback extends ViewPager2.OnPageChangeCallback {
+        @Override
+        public void onPageSelected(int position) {
+            bottomNavigation.getMenu().getItem(position).setChecked(true);
+        }
+    }
 
     private static class ViewPagerAdapter extends FragmentStateAdapter {
-
         public ViewPagerAdapter(@NonNull FragmentActivity fragmentActivity) {
             super(fragmentActivity);
         }
@@ -65,5 +72,4 @@ public class GroupActivity extends AppCompatActivity {
             return 2;
         }
     }
-
 }

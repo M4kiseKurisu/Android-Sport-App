@@ -83,6 +83,7 @@ public class GroupMyFragment extends Fragment {
         draw(view);
     }
 
+    // 根据数据库数据渲染页面
     private void draw(View view) {
         LinearLayout linearLayout = view.findViewById(R.id.group_my_container);
         linearLayout.removeAllViews();
@@ -131,19 +132,7 @@ public class GroupMyFragment extends Fragment {
         }
     }
 
-    private int compare(Date start, Date end, Date cur) {
-        int comparison1 = cur.compareTo(start);
-        int comparison2 = cur.compareTo(end);
-
-        if (comparison1 < 0) {  // 未开始
-            return 2;
-        } else if (comparison2 > 0) {   // 已结束
-            return 1;
-        } else { // 正在进行
-            return 0;
-        }
-    }
-
+    // 渲染特定的组团信息
     private void drawActivity(View view, int activityId, String title, String activityType, int capacity, int maximum,
                               String startTime, String endTime, String intro, String address, String creatorName,
                               int state) {
@@ -265,7 +254,7 @@ public class GroupMyFragment extends Fragment {
         );
         otherButton.setLayoutParams(joinButtonParams);
         if (state == 0) {
-            otherButton.setBackgroundColor(Color.parseColor("#E61A9F1F"));
+            otherButton.setBackgroundColor(Color.parseColor("#FF9800"));
             otherButton.setText("正在进行");
         } else if (state == 1) {
             otherButton.setBackgroundColor(Color.parseColor("#B8B7B7"));
@@ -293,6 +282,19 @@ public class GroupMyFragment extends Fragment {
         innerLinearLayout.addView(buttonsLayout);
         cardView.addView(innerLinearLayout);
         linearLayout.addView(cardView);
+    }
+
+    private int compare(Date start, Date end, Date cur) {
+        int comparison1 = cur.compareTo(start);
+        int comparison2 = cur.compareTo(end);
+
+        if (comparison1 < 0) {  // 未开始
+            return 2;
+        } else if (comparison2 > 0) {   // 已结束
+            return 1;
+        } else { // 正在进行
+            return 0;
+        }
     }
 
     private void exitActivity(int activityId) {
