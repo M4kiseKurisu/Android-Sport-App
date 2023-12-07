@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 
 import java.util.zip.CRC32C;
 
@@ -19,7 +20,6 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText editTextPassword;
     private EditText editTextPhoneNumber;
     private Button buttonRegister2;
-    private Button buttonForgetPwd;
     private DataBaseHelper dataBaseHelper;
 
     @Override
@@ -27,11 +27,18 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register); // 创建一个新的布局文件
 
+        ImageButton retButton = findViewById(R.id.register_return_button);
+        retButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
         editTextUsername = findViewById(R.id.editTextUsername);
         editTextPassword = findViewById(R.id.editTextPassword);
         editTextPhoneNumber = findViewById(R.id.editTextPhoneNumber);
         buttonRegister2 = findViewById(R.id.buttonRegister2);
-        buttonForgetPwd = findViewById(R.id.buttonForgetPwd);
         buttonRegister2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -39,13 +46,6 @@ public class RegisterActivity extends AppCompatActivity {
                 String password = editTextPassword.getText().toString();
                 String phoneNumber = editTextPhoneNumber.getText().toString();
                 registerUser(username, password,phoneNumber);
-            }
-        });
-        buttonForgetPwd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(RegisterActivity.this, ForgetPwdActivity.class);
-                startActivity(intent);
             }
         });
     }

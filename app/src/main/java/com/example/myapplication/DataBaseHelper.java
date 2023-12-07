@@ -1,5 +1,7 @@
 package com.example.myapplication;
 
+import android.content.ContentValues;
+import android.content.Context;
 import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
@@ -35,7 +37,8 @@ public class DataBaseHelper extends SQLiteOpenHelper {
             "love integer," +
             "sportAdd text," +
             "startTime text," +
-            "endTime text," + "" +
+            "endTime text," +
+            "imgPath text," + ""+
             "FOREIGN KEY (userId) REFERENCES User(id) ON DELETE CASCADE)";
     public static final String CREATE_GROUP = "create table Groups(" +
             //primary key 将id列设为主键    autoincrement表示id列是自增长的

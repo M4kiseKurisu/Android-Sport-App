@@ -71,12 +71,6 @@ public class GroupFindFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-        // 插入用户数据
-
-        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("LoginInfor", MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putInt("UserID", 7);
-        editor.apply();
     }
 
     @Override
@@ -580,4 +574,3 @@ public class GroupFindFragment extends Fragment {
                 cal1.get(Calendar.DAY_OF_MONTH) == cal2.get(Calendar.DAY_OF_MONTH);
     }
 }
-

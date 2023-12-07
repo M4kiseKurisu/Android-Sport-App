@@ -23,7 +23,9 @@ public class LoginActivity extends AppCompatActivity {
     private EditText editTextPassword;
     private Button buttonLogin;
     private Button buttonRegister;
+    private Button buttonForgetPwd;
     private DataBaseHelper dataBaseHelper;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,13 +35,14 @@ public class LoginActivity extends AppCompatActivity {
         editTextPassword = findViewById(R.id.editTextPassword);
         buttonLogin = findViewById(R.id.buttonLogin);
         buttonRegister = findViewById(R.id.buttonRegister);
+        buttonForgetPwd = findViewById(R.id.buttonForgetPwd);
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String username = editTextUsername.getText().toString();
                 String password = editTextPassword.getText().toString();
 
-                if (checkLogin(username,password)) {
+                if (checkLogin(username, password)) {
                     int userId = loginUser(username, password);
                     SharedPreferences sharedPreferences = getSharedPreferences("LoginInfor", MODE_PRIVATE);
                     SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -54,9 +57,8 @@ public class LoginActivity extends AppCompatActivity {
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(intent);
                 } else {
-                    showAlert("登陆失败","用户名或密码不正确");
+                    showAlert("登陆失败", "用户名或密码不正确");
                 }
-
             }
         });
         buttonRegister.setOnClickListener(new View.OnClickListener() {
@@ -67,12 +69,19 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        buttonForgetPwd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this, ForgetPwdActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
 
     private boolean checkLogin(String username, String password) {
         dataBaseHelper = new DataBaseHelper(this, "DataBase.db", null, 1);
-        return dataBaseHelper.checkUser(username,password);
+        return dataBaseHelper.checkUser(username, password);
     }
 
     private int loginUser(String username, String password) {

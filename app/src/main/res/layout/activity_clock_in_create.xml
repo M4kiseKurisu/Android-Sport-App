@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="#2193EF">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:padding="0dp">
+
+            <ImageButton
+                android:id="@+id/clock_in_create_back"
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="-10dp"
+                android:background="#2193EF"
+                android:contentDescription="Return button"
+                android:padding="18dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/group_return" />
+
+            <TextView
+                android:layout_width="250dp"
+                android:layout_height="match_parent"
+                android:gravity="center|start"
+                android:text="创建记录"
+                android:textColor="#FFFFFF"
+                android:textSize="23dp"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </androidx.appcompat.widget.Toolbar>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/clock_in_border"
+                android:gravity="center"
+                android:text="活动选择"
+                android:textColor="@color/group_black"
+                android:textSize="25dp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/clock_item_border"
+                android:orientation="vertical">
+
+                <!-- 第一行的RadioGroup -->
+                <RadioGroup
+                    android:id="@+id/radioGroup1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <!-- 在这里放置你的四个RadioButton -->
+                    <RadioButton
+                        android:id="@+id/radioButton1"
+                        android:layout_width="0dp"
+                        android:layout_height="60dp"
+                        android:layout_weight="1"
+                        android:text="TD线"
+                        android:textSize="22dp" />
+
+                    <RadioButton
+                        android:id="@+id/radioButton2"
+                        android:layout_width="0dp"
+                        android:layout_height="60dp"
+                        android:layout_weight="1"
+                        android:text="跑步"
+                        android:textSize="22dp" />
+
+                    <RadioButton
+                        android:id="@+id/radioButton3"
+                        android:layout_width="0dp"
+                        android:layout_height="60dp"
+                        android:layout_weight="1"
+                        android:text="篮球"
+                        android:textSize="22dp" />
+
+                    <RadioButton
+                        android:id="@+id/radioButton4"
+                        android:layout_width="0dp"
+                        android:layout_height="60dp"
+                        android:layout_weight="1"
+                        android:text="排球"
+                        android:textSize="22dp" />
+
+                    <!-- 添加其他的RadioButton -->
+                </RadioGroup>
+
+                <!-- 第二行的RadioGroup -->
+                <RadioGroup
+                    android:id="@+id/radioGroup2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <!-- 在这里放置你的下四个RadioButton -->
+                    <RadioButton
+                        android:id="@+id/radioButton5"
+                        android:layout_width="0dp"
+                        android:layout_height="60dp"
+                        android:layout_weight="1"
+                        android:text="羽毛球"
+                        android:textSize="20dp" />
+
+                    <RadioButton
+                        android:id="@+id/radioButton6"
+                        android:layout_width="0dp"
+                        android:layout_height="60dp"
+                        android:layout_weight="1"
+                        android:text="乒乓球"
+                        android:textSize="20dp" />
+
+                    <RadioButton
+                        android:id="@+id/radioButton7"
+                        android:layout_width="0dp"
+                        android:layout_height="60dp"
+                        android:layout_weight="1"
+                        android:text="网球"
+                        android:textSize="22dp" />
+
+                    <RadioButton
+                        android:id="@+id/radioButton8"
+                        android:layout_width="0dp"
+                        android:layout_height="60dp"
+                        android:layout_weight="1"
+                        android:text="足球"
+                        android:textSize="22dp" />
+
+                    <!-- 添加其他的RadioButton -->
+                </RadioGroup>
+
+                <!-- 第三行的RadioGroup -->
+                <RadioGroup
+                    android:id="@+id/radioGroup3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <!-- 在这里放置你的下四个RadioButton -->
+                    <RadioButton
+                        android:id="@+id/radioButton9"
+                        android:layout_width="0dp"
+                        android:layout_height="60dp"
+                        android:layout_weight="1"
+                        android:text="台球"
+                        android:textSize="22dp" />
+
+                    <RadioButton
+                        android:id="@+id/radioButton10"
+                        android:layout_width="0dp"
+                        android:layout_height="60dp"
+                        android:layout_weight="1"
+                        android:text="游泳"
+                        android:textSize="22dp" />
+
+                    <RadioButton
+                        android:id="@+id/radioButton11"
+                        android:layout_width="0dp"
+                        android:layout_height="60dp"
+                        android:layout_weight="1"
+                        android:text="飞盘"
+                        android:textSize="22dp" />
+
+                    <RadioButton
+                        android:id="@+id/radioButton12"
+                        android:layout_width="0dp"
+                        android:layout_height="60dp"
+                        android:layout_weight="1"
+                        android:text="健身"
+                        android:textSize="22dp" />
+
+                    <!-- 添加其他的RadioButton -->
+                </RadioGroup>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:text="运动时间"
+                android:textColor="@color/cardview_dark_background"
+                android:textSize="25dp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <Button
+                        android:id="@+id/clockStart"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="选择开始时间" />
+
+                    <TextView
+                        android:id="@+id/textViewStart"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <Button
+                        android:id="@+id/clockEnd"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="选择结束时间" />
+
+                    <TextView
+                        android:id="@+id/textViewEnd"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:text="运动地点"
+                android:textColor="@color/cardview_dark_background"
+                android:textSize="25dp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/sport_place"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:hint="输入运动地点"
+                android:inputType="text"
+                android:selectAllOnFocus="true"
+                android:singleLine="true"
+                android:textColorHint="#95A1AA" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:text="运动图片"
+                android:textColor="@color/cardview_dark_background"
+                android:textSize="25dp"
+                android:textStyle="bold" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp">
+
+                <Button
+                    android:id="@+id/clock_add_img"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:background="@drawable/clock_sport_add"/>
+
+                <TextView
+                    android:id="@+id/add_img_back_ground"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:background="#D6D6D6"
+                    android:hint="添加图片"
+                    android:paddingLeft="23dp"
+                    android:paddingTop="75dp"/>
+                <ImageView
+                    android:id="@+id/sport_img"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:scaleType="centerCrop"
+                    android:visibility="gone"/>
+            </RelativeLayout>
+
+            <Button
+                android:id="@+id/create_clock_in"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:layout_gravity="center"
+                android:background="@drawable/clock_in_border"
+                android:text="提交"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>
