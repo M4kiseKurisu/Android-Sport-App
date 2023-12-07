@@ -68,6 +68,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
             "planContent text," +
             "planType text," +
             "favor integer," +
+            "img text," +
             "FOREIGN KEY (userId) REFERENCES User(id) ON DELETE CASCADE)";
 
     public static final String CREATE_COMMENT = "create table Comment(" +

@@ -8,17 +8,22 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.myapplication.DataBaseHelper;
 import com.example.myapplication.R;
+
+import java.io.File;
 
 public class TutorialShow extends AppCompatActivity {
 
@@ -97,6 +102,7 @@ public class TutorialShow extends AppCompatActivity {
     private int favorAmount;
 
     private TextView tutorial_title;
+    private ImageView tutorial_image;
 
     private int page = 1;
 
@@ -163,6 +169,9 @@ public class TutorialShow extends AppCompatActivity {
 
         commentPage = findViewById(R.id.activity_comment_page);
         tutorial_title = findViewById(R.id.tutorial_title);
+        tutorial_image = findViewById(R.id.tutorial_image);
+
+
 
         LinearLayout.LayoutParams para;
         para = (LinearLayout.LayoutParams) comment.getLayoutParams();
@@ -202,7 +211,11 @@ public class TutorialShow extends AppCompatActivity {
                     tutorial_title.setText(cursor.getString(cursor.getColumnIndex("planTitle")));
                     tutorial_favors.setText(String.valueOf(favorAmount));
 
-                    tutorial_content.setText(cursor.getString(cursor.getColumnIndex("planContent")));
+                    String imgPath = cursor.getString(cursor.getColumnIndex("img"));
+                    refreshPhoto(imgPath);
+
+                    String content = cursor.getString(cursor.getColumnIndex("planContent"));
+                    tutorial_content.setText(wipe(content));
                 }
             }
             cursor.close();
@@ -526,5 +539,25 @@ public class TutorialShow extends AppCompatActivity {
 
         cursor.close();
         database.close();
+    }
+
+    private void refreshPhoto(String imgPath) {
+        if (imgPath != null) {
+            File imgFile = new File(imgPath);
+            if (imgFile.exists()) {
+                tutorial_image.setVisibility(View.VISIBLE);
+                Bitmap bitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+                tutorial_image.setImageBitmap(bitmap);
+            } else {
+                // 处理文件不存在的情况
+            }
+        }
+    }
+
+    private String wipe(String input) {
+        input = input.replaceAll("sb", "**");
+        return input;
+
+        //暂时只想到了用String中的replaceAll来处理屏蔽词，如果有一定屏蔽词可以在这个方法中设定屏蔽成*
     }
 }

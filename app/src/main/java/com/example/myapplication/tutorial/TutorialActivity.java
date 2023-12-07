@@ -6,16 +6,21 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.myapplication.DataBaseHelper;
 import com.example.myapplication.R;
+
+import java.io.File;
 
 public class TutorialActivity extends AppCompatActivity {
 
@@ -301,6 +306,9 @@ public class TutorialActivity extends AppCompatActivity {
                 cursor2.close();
                 category += ("   " + cursor.getString(cursor.getColumnIndex("planType")));
 
+                String imgPath = cursor.getString(cursor.getColumnIndex("img"));
+                refreshPhoto(imgPath, tutorial_1);
+
                 tutorial_1_category.setText(category);
                 int id = cursor.getInt(cursor.getColumnIndex("id"));
                 tutorial_1.setOnClickListener(new View.OnClickListener() {
@@ -329,6 +337,9 @@ public class TutorialActivity extends AppCompatActivity {
                 }
                 cursor2.close();
                 category += ("   " + cursor.getString(cursor.getColumnIndex("planType")));
+
+                String imgPath = cursor.getString(cursor.getColumnIndex("img"));
+                refreshPhoto(imgPath, tutorial_2);
 
                 tutorial_2_category.setText(category);
                 int id = cursor.getInt(cursor.getColumnIndex("id"));
@@ -359,6 +370,9 @@ public class TutorialActivity extends AppCompatActivity {
                 cursor2.close();
                 category += ("   " + cursor.getString(cursor.getColumnIndex("planType")));
 
+                String imgPath = cursor.getString(cursor.getColumnIndex("img"));
+                refreshPhoto(imgPath, tutorial_3);
+
                 tutorial_3_category.setText(category);
                 int id = cursor.getInt(cursor.getColumnIndex("id"));
                 tutorial_3.setOnClickListener(new View.OnClickListener() {
@@ -387,6 +401,9 @@ public class TutorialActivity extends AppCompatActivity {
                 }
                 cursor2.close();
                 category += ("   " + cursor.getString(cursor.getColumnIndex("planType")));
+
+                String imgPath = cursor.getString(cursor.getColumnIndex("img"));
+                refreshPhoto(imgPath, tutorial_4);
 
                 tutorial_4_category.setText(category);
                 int id = cursor.getInt(cursor.getColumnIndex("id"));
@@ -417,6 +434,9 @@ public class TutorialActivity extends AppCompatActivity {
                 cursor2.close();
                 category += ("   " + cursor.getString(cursor.getColumnIndex("planType")));
 
+                String imgPath = cursor.getString(cursor.getColumnIndex("img"));
+                refreshPhoto(imgPath, tutorial_5);
+
                 tutorial_5_category.setText(category);
                 int id = cursor.getInt(cursor.getColumnIndex("id"));
                 tutorial_5.setOnClickListener(new View.OnClickListener() {
@@ -445,6 +465,9 @@ public class TutorialActivity extends AppCompatActivity {
                 }
                 cursor2.close();
                 category += ("   " + cursor.getString(cursor.getColumnIndex("planType")));
+
+                String imgPath = cursor.getString(cursor.getColumnIndex("img"));
+                refreshPhoto(imgPath, tutorial_6);
 
                 tutorial_6_category.setText(category);
                 int id = cursor.getInt(cursor.getColumnIndex("id"));
@@ -475,6 +498,9 @@ public class TutorialActivity extends AppCompatActivity {
                 cursor2.close();
                 category += ("   " + cursor.getString(cursor.getColumnIndex("planType")));
 
+                String imgPath = cursor.getString(cursor.getColumnIndex("img"));
+                refreshPhoto(imgPath, tutorial_7);
+
                 tutorial_7_category.setText(category);
                 int id = cursor.getInt(cursor.getColumnIndex("id"));
                 tutorial_7.setOnClickListener(new View.OnClickListener() {
@@ -503,6 +529,9 @@ public class TutorialActivity extends AppCompatActivity {
                 }
                 cursor2.close();
                 category += ("   " + cursor.getString(cursor.getColumnIndex("planType")));
+
+                String imgPath = cursor.getString(cursor.getColumnIndex("img"));
+                refreshPhoto(imgPath, tutorial_8);
 
                 tutorial_8_category.setText(category);
                 int id = cursor.getInt(cursor.getColumnIndex("id"));
@@ -533,6 +562,9 @@ public class TutorialActivity extends AppCompatActivity {
                 cursor2.close();
                 category += ("   " + cursor.getString(cursor.getColumnIndex("planType")));
 
+                String imgPath = cursor.getString(cursor.getColumnIndex("img"));
+                refreshPhoto(imgPath, tutorial_9);
+
                 tutorial_9_category.setText(category);
                 int id = cursor.getInt(cursor.getColumnIndex("id"));
                 tutorial_9.setOnClickListener(new View.OnClickListener() {
@@ -562,6 +594,9 @@ public class TutorialActivity extends AppCompatActivity {
                 cursor2.close();
                 category += ("   " + cursor.getString(cursor.getColumnIndex("planType")));
 
+                String imgPath = cursor.getString(cursor.getColumnIndex("img"));
+                refreshPhoto(imgPath, tutorial_10);
+
                 tutorial_10_category.setText(category);
                 int id = cursor.getInt(cursor.getColumnIndex("id"));
                 tutorial_10.setOnClickListener(new View.OnClickListener() {
@@ -583,4 +618,16 @@ public class TutorialActivity extends AppCompatActivity {
         database.close();
     }
 
+    private void refreshPhoto(String imgPath, ImageButton tutorial_image) {
+        if (imgPath != null) {
+            File imgFile = new File(imgPath);
+            if (imgFile.exists()) {
+                tutorial_image.setVisibility(View.VISIBLE);
+                Bitmap bitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+                tutorial_image.setImageBitmap(bitmap);
+            } else {
+                tutorial_image.setImageResource(R.drawable.image4);
+            }
+        }
+    }
 }
