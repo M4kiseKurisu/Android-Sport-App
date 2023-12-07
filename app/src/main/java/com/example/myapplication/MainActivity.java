@@ -9,10 +9,12 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.example.myapplication.group.GroupActivity;
 import com.example.myapplication.tutorial.TutorialActivity;
 
 public class MainActivity extends AppCompatActivity {
     private ImageButton button1;
+    private ImageButton button2;
     private ImageButton button4;
     private DataBaseHelper dbHelper;
     @Override
@@ -27,14 +29,16 @@ public class MainActivity extends AppCompatActivity {
         //button1.setOnClickListener(new MyClickListener());
         dbHelper = new DataBaseHelper(this, "DataBase.db", null, 1);
         dbHelper.getWritableDatabase();
-        /*Button createDatabase = (Button) findViewById(R.id.create_database);
-        createDatabase.setOnClickListener(new View.OnClickListener() {
+
+        button2 = findViewById(R.id.button2);
+        button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//创建或打开现有的数据库
-                dbHelper.getWritableDatabase();
+                Intent intent = new Intent();
+                intent.setClass(MainActivity.this, GroupActivity.class);
+                startActivity(intent);
             }
-        });*/
+        });
 
         button4 = findViewById(R.id.button4);
         button4.setOnClickListener(new View.OnClickListener() {
