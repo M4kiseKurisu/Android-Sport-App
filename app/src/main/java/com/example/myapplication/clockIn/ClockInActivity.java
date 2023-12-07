@@ -70,10 +70,12 @@ public class ClockInActivity extends AppCompatActivity {
         }));
 
     }
+
     protected void onResume() {
         super.onResume();
         rendering();
     }
+
     public void rendering() {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM ClockIn", null);
@@ -88,8 +90,8 @@ public class ClockInActivity extends AppCompatActivity {
             String endTime = cursor.getString(cursor.getColumnIndex("endTime"));
             String imagePath = cursor.getString(cursor.getColumnIndex("imgPath"));
             // 在这里使用提取的数据进行操作
-            Log.d("rendering",sportItem);
-            Log.d("rendering",sportAdd);
+            Log.d("rendering", sportItem);
+            Log.d("rendering", sportAdd);
 
             // 创建根布局 LinearLayout
             LinearLayout rootLayout = new LinearLayout(this);
@@ -97,7 +99,7 @@ public class ClockInActivity extends AppCompatActivity {
                     ViewGroup.LayoutParams.MATCH_PARENT,
                     660
             );
-            rootLayoutParams.setMargins(20,20,20,0);
+            rootLayoutParams.setMargins(20, 20, 20, 0);
             rootLayout.setLayoutParams(rootLayoutParams);
             rootLayout.setOrientation(LinearLayout.VERTICAL);
             //rootLayout.setGravity(Gravity.CENTER_VERTICAL);
@@ -121,11 +123,11 @@ public class ClockInActivity extends AppCompatActivity {
             // 创建用户名 TextView
             TextView usernameTextView = new TextView(this);
             LinearLayout.LayoutParams usernameTextViewParams = new LinearLayout.LayoutParams(
-                    ViewGroup.LayoutParams.WRAP_CONTENT,
+                    850,
                     ViewGroup.LayoutParams.WRAP_CONTENT
             );
             usernameTextView.setLayoutParams(usernameTextViewParams);
-            String user = userId + "-" + sportItem+"-"+sportAdd;
+            String user = userId + "-" + sportItem + "-" + sportAdd;
             usernameTextView.setText(user);
             usernameTextView.setTextSize(18);
             usernameTextView.setTypeface(Typeface.DEFAULT_BOLD);
@@ -143,7 +145,7 @@ public class ClockInActivity extends AppCompatActivity {
                     120
             );
             layoutParams.setMargins(
-                    560,
+                    0,
                     0,
                     0,
                     0
@@ -175,16 +177,17 @@ public class ClockInActivity extends AppCompatActivity {
             textView.setPadding(10, 0, 0, 0);
             imageButton.setOnClickListener((new View.OnClickListener() {
                 private boolean isLiked = false;
+
                 @Override
                 public void onClick(View v) {
-                    if (isLiked){
+                    if (isLiked) {
                         return;
                     }
                     imageButton.setImageResource(R.drawable.dianzanhou_aigei_com);
                     int num = Integer.parseInt(textView.getText().toString());
                     textView.setText(String.valueOf(num + 1));
                     ContentValues values = new ContentValues();
-                    values.put("love",num+1);
+                    values.put("love", num + 1);
                     String selection = "id = ?";
                     String[] selectionArgs = {String.valueOf(id)};
                     SQLiteDatabase db = dbHelper.getWritableDatabase();
@@ -206,12 +209,12 @@ public class ClockInActivity extends AppCompatActivity {
             );
             imageView.setLayoutParams(imageViewParams);
             imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-//            File imgFile = new File(imagePath);
-//               if (imgFile.exists()) {
-//                   Bitmap bitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
-//                   imageView.setImageBitmap(bitmap);
-//               }
-            imageView.setImageResource(R.drawable.image1);
+            File imgFile = new File(imagePath);
+            if (imgFile.exists()) {
+                Bitmap bitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+                imageView.setImageBitmap(bitmap);
+            }
+            //imageView.setImageResource(R.drawable.image1);
             imageView.setPadding(
                     10,
                     0,
@@ -240,7 +243,7 @@ public class ClockInActivity extends AppCompatActivity {
             rootLayout.addView(timeTextView);
             linearLayouts.add(rootLayout);
         }
-        for(int i = linearLayouts.size() - 1;i >=0 ;i--){
+        for (int i = linearLayouts.size() - 1; i >= 0; i--) {
             clockInList.addView(linearLayouts.get(i));
         }
         cursor.close();

@@ -1,12 +1,17 @@
 package com.example.myapplication.clockIn;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
@@ -29,10 +34,12 @@ import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.example.myapplication.DataBaseHelper;
 import com.example.myapplication.MainActivity;
 import com.example.myapplication.R;
+
 
 import java.io.File;
 import java.util.Calendar;
@@ -54,6 +61,8 @@ public class ClockInCreateActivity extends AppCompatActivity {
     private String[] sports = new String[]{"TD线", "跑步", "篮球", "排球", "羽毛球",
             "乒乓球", "网球", "足球", "台球", "游泳", "飞盘", "健身"};
     private int sportIndex = -1;
+    private static final int REQUEST_PERMISSION = 1;
+    private static final String[] PERMISSIONS = {Manifest.permission.READ_EXTERNAL_STORAGE};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,18 +113,9 @@ public class ClockInCreateActivity extends AppCompatActivity {
         addImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //chooseImageFromGallery();
-                addImg.setVisibility(View.GONE);
-                TextView textView = findViewById(R.id.add_img_back_ground);
-                textView.setVisibility(View.GONE);
-                ImageView imageView = findViewById(R.id.sport_img);
-                imageView.setImageResource(R.drawable.image1);
-                imageView.setVisibility(View.VISIBLE);
-//                File imgFile = new File(imagePath);
-//                if (imgFile.exists()) {
-//                    Bitmap bitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
-//                    imageView.setImageBitmap(bitmap);
-//                }
+                    // 如果已经拥有权限，执行相应操作
+                    requestPermission();
+                    chooseImageFromGallery();
             }
         });
 
@@ -274,14 +274,27 @@ public class ClockInCreateActivity extends AppCompatActivity {
             // 获取选择的图片的URI
             Uri imageUri = data.getData();
             // 通过URI获取图片的路径
-            String imagePath = getImagePathFromUri(imageUri);
+            imagePath = getImagePathFromUri(imageUri);
             // 在这里可以对图片路径进行处理或上传操作
+            //在这里显示照片
+            addImg.setVisibility(View.GONE);
+            TextView textView = findViewById(R.id.add_img_back_ground);
+            textView.setVisibility(View.GONE);
+            ImageView imageView = findViewById(R.id.sport_img);
+            //imageView.setImageResource(R.drawable.image1);
+            imageView.setVisibility(View.VISIBLE);
+            File imgFile = new File(imagePath);
+            Log.d("test",imagePath);
+            if (imgFile.exists()) {
+                Bitmap bitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+                imageView.setImageBitmap(bitmap);
+            }
         }
     }
 
     // 根据URI获取图片的路径
     private String getImagePathFromUri(Uri uri) {
-        //String imagePath = null; 将imagePath设置成为属性
+        String imagePath = null;
         if (DocumentsContract.isDocumentUri(this, uri)) {
             // 如果是Document类型的URI，则通过Document ID处理
             String documentId = DocumentsContract.getDocumentId(uri);
@@ -315,6 +328,25 @@ public class ClockInCreateActivity extends AppCompatActivity {
         }
         return path;
     }
+    private void requestPermission() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, PERMISSIONS, REQUEST_PERMISSION);
+        }
+    }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == REQUEST_PERMISSION) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                // 权限已授予，执行相应操作
+                // 例如，你可以在这里调用刷新照片的方法
+            } else {
+                // 权限被拒绝，处理相应的逻辑
+                // 例如，你可以显示一个提示消息告知用户需要权限才能加载图片
+                Toast.makeText(this, "需要授予读取外部存储器的权限才能加载图片", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
 
 }
