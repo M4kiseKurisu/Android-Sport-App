@@ -157,6 +157,7 @@
             android:gravity="right">
 
             <TextView
+                android:id="@+id/weather"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:text="今日天气：晴"
@@ -173,60 +174,20 @@
         android:layout_width="match_parent"
         android:layout_height="240dp"
         android:orientation="vertical">
-
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:background="#6699ff">
+            android:layout_height="wrap_content"
+            android:fillViewport="true"
+            android:scaleType="fitXY">
 
             <LinearLayout
-                android:layout_width="120dp"
-                android:layout_height="match_parent">
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:text="篮球1"
-                        android:textSize="20dp"
-                        android:gravity="center"/>
+                android:id="@+id/verticalLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:scaleType="fitXY">
             </LinearLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:background="#ffcc00">
-
-            <LinearLayout
-                android:layout_width="120dp"
-                android:layout_height="match_parent">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="篮球2"
-                    android:textSize="20dp"
-                    android:gravity="center"/>
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:background="#00cc00">
-
-            <LinearLayout
-                android:layout_width="120dp"
-                android:layout_height="match_parent">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="篮球3"
-                    android:textSize="20dp"
-                    android:gravity="center"/>
-            </LinearLayout>
-
-        </LinearLayout>
+        </ScrollView>
 
     </LinearLayout>
 
