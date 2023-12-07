@@ -23,6 +23,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText editTextPassword;
     private Button buttonLogin;
     private Button buttonRegister;
+    private Button buttonForgetPwd;
     private DataBaseHelper dataBaseHelper;
 
     @Override
@@ -34,6 +35,7 @@ public class LoginActivity extends AppCompatActivity {
         editTextPassword = findViewById(R.id.editTextPassword);
         buttonLogin = findViewById(R.id.buttonLogin);
         buttonRegister = findViewById(R.id.buttonRegister);
+        buttonForgetPwd = findViewById(R.id.buttonForgetPwd);
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -64,6 +66,13 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // 启动注册活动
                 Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+                startActivity(intent);
+            }
+        });
+        buttonForgetPwd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this, ForgetPwdActivity.class);
                 startActivity(intent);
             }
         });

@@ -20,7 +20,6 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText editTextPassword;
     private EditText editTextPhoneNumber;
     private Button buttonRegister2;
-    private Button buttonForgetPwd;
     private DataBaseHelper dataBaseHelper;
 
     @Override
@@ -40,7 +39,6 @@ public class RegisterActivity extends AppCompatActivity {
         editTextPassword = findViewById(R.id.editTextPassword);
         editTextPhoneNumber = findViewById(R.id.editTextPhoneNumber);
         buttonRegister2 = findViewById(R.id.buttonRegister2);
-        buttonForgetPwd = findViewById(R.id.buttonForgetPwd);
         buttonRegister2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -48,13 +46,6 @@ public class RegisterActivity extends AppCompatActivity {
                 String password = editTextPassword.getText().toString();
                 String phoneNumber = editTextPhoneNumber.getText().toString();
                 registerUser(username, password,phoneNumber);
-            }
-        });
-        buttonForgetPwd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(RegisterActivity.this, ForgetPwdActivity.class);
-                startActivity(intent);
             }
         });
     }
