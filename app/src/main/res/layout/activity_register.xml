@@ -5,18 +5,30 @@
     android:background="@drawable/background"
     android:padding="30dp">
 
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
         android:orientation="vertical">
+
+        <ImageButton
+            android:id="@+id/register_return_button"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="-10dp"
+            android:background="@color/transparent"
+            android:contentDescription="Return button"
+            android:padding="18dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/group_return" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:layout_marginBottom="30dp"
             android:gravity="center|center"
-            android:text="登录"
+            android:text="注册"
             android:textColor="@color/group_white"
             android:textSize="30sp"
             android:textStyle="bold" />
@@ -26,8 +38,8 @@
             style="@style/EditTextStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="30dp"
             android:hint="用户名"
+            android:inputType="textPersonName"
             android:textColor="#FFFFFFFF"
             android:textColorHint="#FFFFFF"
             android:textSize="20sp" />
@@ -38,11 +50,23 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/editTextUsername"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="16dp"
             android:hint="密码"
             android:inputType="textPassword"
             android:textColor="#FFFFFFFF"
-            android:textColorHint="@color/group_white"
+            android:textColorHint="#FFFFFF"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/editTextPhoneNumber"
+            style="@style/EditTextStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/editTextPassword"
+            android:layout_marginTop="16dp"
+            android:hint="手机号"
+            android:textColor="#FFFFFFFF"
+            android:textColorHint="#FFFFFF"
             android:textSize="20sp" />
 
         <LinearLayout
@@ -56,7 +80,7 @@
                 android:layout_weight="1" />
 
             <Button
-                android:id="@+id/buttonLogin"
+                android:id="@+id/buttonRegister2"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/editTextPassword"
@@ -76,49 +100,7 @@
                 android:layout_weight="1" />
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-
-
-            <Button
-                android:id="@+id/buttonForgetPwd"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_weight="2"
-                android:background="@color/transparent"
-                android:gravity="center|center"
-                android:text="忘记密码?"
-                android:textColor="#FFEB3B"
-                android:textSize="16sp" />
-
-            <Button
-                android:id="@+id/buttonRegister"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/editTextPassword"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="20dp"
-                android:layout_weight="2"
-                android:background="@color/transparent"
-                android:gravity="center|center"
-                android:text="注册"
-                android:textColor="#8BC34A"
-                android:textSize="16sp" />
-
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-        </LinearLayout>
     </LinearLayout>
+
 
 </RelativeLayout>

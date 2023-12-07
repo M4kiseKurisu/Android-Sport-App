@@ -11,6 +11,7 @@ import android.app.TimePickerDialog;
 import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -124,7 +125,9 @@ public class ClockInCreateActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 ContentValues values = new ContentValues();
-                values.put("userId", 1);
+                SharedPreferences sharedPreferences = getSharedPreferences("LoginInfor", MODE_PRIVATE);
+                int userId = sharedPreferences.getInt("UserID", -1);
+                values.put("userId", userId);
                 values.put("sportItem", sports[sportIndex]);
                 values.put("love", 0);
                 values.put("sportAdd", sportPlace.getText().toString());
@@ -134,7 +137,7 @@ public class ClockInCreateActivity extends AppCompatActivity {
                 SQLiteDatabase database = dbHelper.getWritableDatabase();
                 long id = database.insert("ClockIn", null, values);
                 Log.d("id:", String.valueOf(id));
-                Log.d("id:", "test");
+                Log.d("id:", String.valueOf(userId));
                 database.close();
                 finish();
             }

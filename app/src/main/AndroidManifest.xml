@@ -15,8 +15,7 @@
         tools:targetApi="31">
         <activity
             android:name=".clockIn.ClockInCreateActivity"
-            android:exported="false"
-            android:label="@string/title_activity_clock_in_create" />
+            android:exported="false"/>
         <activity
             android:name=".clockIn.ClockInActivity"
             android:exported="false" />
@@ -33,19 +32,27 @@
             android:name=".group.GroupActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
 
+
         <activity
-            android:name=".LoginActivity"
-            android:exported="false"/>
+            android:name=".MainActivity"
+            android:exported="false">
+        </activity>
+        <activity
+            android:name=".RegisterActivity"
+            android:exported="false">
+        </activity>
+        <activity
+            android:name=".ForgetPwdActivity"
+            android:exported="false">
+        </activity>
     </application>
 
 </manifest>

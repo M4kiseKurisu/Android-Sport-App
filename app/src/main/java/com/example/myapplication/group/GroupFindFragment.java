@@ -1,9 +1,14 @@
 package com.example.myapplication.group;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.ContentValues;
+import android.content.DialogInterface;
+import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -13,6 +18,7 @@ import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import android.text.TextUtils;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -68,152 +74,295 @@ public class GroupFindFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_group_find, container, false);
-
-        LinearLayout linearLayout = view.findViewById(R.id.group_find_container);
-        for (int i = 0; i < 5; ++i) {
-            CardView cardView = new CardView(requireContext());
-            cardView.setLayoutParams(new LinearLayout.LayoutParams(
-                    LinearLayout.LayoutParams.MATCH_PARENT,
-                    LinearLayout.LayoutParams.WRAP_CONTENT
-            ));
-            cardView.setCardBackgroundColor(Color.WHITE);
-            cardView.setRadius(20);
-            cardView.setCardElevation(8);
-            cardView.setUseCompatPadding(true);
-
-            LinearLayout innerLinearLayout = new LinearLayout(requireContext());
-            innerLinearLayout.setLayoutParams(new LinearLayout.LayoutParams(
-                    LinearLayout.LayoutParams.MATCH_PARENT,
-                    dpToPx(120)
-            ));
-            innerLinearLayout.setOrientation(LinearLayout.VERTICAL);
-            innerLinearLayout.setPadding(
-                    dpToPx(15), dpToPx(2), dpToPx(15), 0
-            );
-
-            TextView titleTextView = new TextView(requireContext());
-            titleTextView.setLayoutParams(new LinearLayout.LayoutParams(
-                    LinearLayout.LayoutParams.MATCH_PARENT, dpToPx(38)
-            ));
-            titleTextView.setBackgroundColor(Color.WHITE);
-            titleTextView.setGravity(Gravity.CENTER | Gravity.START);
-            titleTextView.setText("大运村聚会");
-            titleTextView.setTextColor(Color.parseColor("#01345C"));
-            titleTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 27);
-            titleTextView.setTypeface(Typeface.DEFAULT_BOLD);
-
-            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
-                    LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT
-            );
-
-            LinearLayout dateTimeLayout = new LinearLayout(requireContext());
-            dateTimeLayout.setLayoutParams(layoutParams);
-            dateTimeLayout.setOrientation(LinearLayout.HORIZONTAL);
-            dateTimeLayout.setPadding(
-                    0, dpToPx(5), 0, 0
-            );
-
-            TextView timeTextView = new TextView(requireContext());
-            timeTextView.setLayoutParams(new LinearLayout.LayoutParams(
-                    0, dpToPx(30), 1
-            ));
-            timeTextView.setBackgroundColor(Color.WHITE);
-            timeTextView.setText("时间：2023-12-12");
-            timeTextView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 18);
-
-            TextView creatorTextView = new TextView(requireContext());
-            creatorTextView.setLayoutParams(new LinearLayout.LayoutParams(
-                    0, dpToPx(30), 1
-            ));
-            creatorTextView.setBackgroundColor(Color.WHITE);
-            creatorTextView.setGravity(Gravity.END);
-            creatorTextView.setText("发起人：吴浩宇");
-            creatorTextView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 18);
-
-            dateTimeLayout.addView(timeTextView);
-            dateTimeLayout.addView(creatorTextView);
-
-            LinearLayout buttonsLayout = new LinearLayout(requireContext());
-            buttonsLayout.setLayoutParams(layoutParams);
-            buttonsLayout.setOrientation(LinearLayout.HORIZONTAL);
-            buttonsLayout.setPadding(
-                    dpToPx(10), dpToPx(5), dpToPx(10), 0
-            );
-
-            Button detailsButton = new Button(requireContext());
-            LinearLayout.LayoutParams detailsButtonParams = new LinearLayout.LayoutParams(
-                    0, dpToPx(30), 1
-            );
-            detailsButtonParams.setMarginEnd(dpToPx(140)); // 设置按钮之间的间距
-            detailsButton.setLayoutParams(detailsButtonParams);
-            detailsButton.setBackgroundColor(Color.parseColor("#058BC8"));
-            detailsButton.setGravity(Gravity.CENTER);
-            detailsButton.setSingleLine(true);
-            detailsButton.setEllipsize(TextUtils.TruncateAt.END);
-            detailsButton.setText("查看详情");
-            detailsButton.setTextColor(Color.WHITE);
-            detailsButton.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
-            detailsButton.setTypeface(Typeface.DEFAULT_BOLD);
-            detailsButton.setPadding(0, 0, 0, 0);
-            detailsButton.setOnClickListener(v -> {
-                AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getActivity());
-                LayoutInflater inflater1 = GroupFindFragment.this.getLayoutInflater();
-                View dialogView = inflater1.inflate(R.layout.dialog_group_activity_detail, null);
-                TextView title = dialogView.findViewById(R.id.group_activity_title);
-                title.setText("大运村桌游聚会");
-                TextView creator = dialogView.findViewById(R.id.group_activity_creator);
-                creator.setText("吴浩宇");
-                TextView person = dialogView.findViewById(R.id.group_activity_person);
-                person.setText("15/200");
-                TextView time = dialogView.findViewById(R.id.group_activity_time);
-                time.setText("2023-11-11 19:00-22:00");
-                TextView location = dialogView.findViewById(R.id.group_activity_location);
-                location.setText("大运村广场");
-                TextView description = dialogView.findViewById(R.id.group_activity_content);
-                description.setText("这是一场\"浩\"劫\n");
-                Button closeButton = dialogView.findViewById(R.id.group_activity_close_button);
-                dialogBuilder.setView(dialogView);
-                AlertDialog alertDialog = dialogBuilder.create();
-
-                closeButton.setOnClickListener(v1 -> alertDialog.dismiss());
-                alertDialog.show();
-            });
-
-            Button joinButton = new Button(requireContext());
-            LinearLayout.LayoutParams joinButtonParams = new LinearLayout.LayoutParams(
-                    0, dpToPx(30), 1
-            );
-            joinButton.setLayoutParams(joinButtonParams);
-            joinButton.setBackgroundColor(Color.parseColor("#E61A9F1F"));
-            joinButton.setGravity(Gravity.CENTER);
-            joinButton.setSingleLine(true);
-            joinButton.setText("加入活动");
-            joinButton.setTextColor(Color.WHITE);
-            joinButton.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
-            joinButton.setTypeface(Typeface.DEFAULT_BOLD);
-            joinButton.setPadding(0, 0, 0, 0);
-
-            buttonsLayout.addView(detailsButton);
-            buttonsLayout.addView(joinButton);
-
-            innerLinearLayout.addView(titleTextView);
-            innerLinearLayout.addView(dateTimeLayout);
-            innerLinearLayout.addView(buttonsLayout);
-
-            cardView.addView(innerLinearLayout);
-            linearLayout.addView(cardView);
-        }
-
+        draw(view);
         // 新建活动
         ImageButton create = view.findViewById(R.id.group_activity_create_button);
-        createActivityButton(create);
+        createActivity(create);
         return view;
     }
 
-    private void createActivityButton(ImageButton button) {
+    @Override
+    public void onResume() {
+        super.onResume();
+        View view = getView();
+        assert view != null;
+        draw(view);
+    }
+
+    // 根据数据库渲染页面
+    private void draw(View view) {
+        LinearLayout linearLayout = view.findViewById(R.id.group_find_container);
+        linearLayout.removeAllViews();
+
+        SQLiteDatabase db;
+        try (DataBaseHelper dbHelper = new DataBaseHelper(getActivity(), "DataBase.db", null, 1)) {
+            db = dbHelper.getReadableDatabase();
+            SharedPreferences sharedPreferences = getActivity().getSharedPreferences("LoginInfor", MODE_PRIVATE);
+            int userId = sharedPreferences.getInt("UserID", -1);
+            String query = "SELECT G.*, U.name " +
+                    "FROM Groups G " +
+                    "JOIN User U ON G.hostId = U.id " +
+                    "WHERE G.id NOT IN ( " +
+                    "    SELECT UA.activityId " +
+                    "    FROM UserActivity UA " +
+                    "    WHERE UA.userId = " + userId +
+                    ") " +
+                    "ORDER BY datetime(G.startTime) DESC";
+
+            Date currentTime = new Date(System.currentTimeMillis());
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+            Cursor cursor = db.rawQuery(query, null);
+            while (cursor.moveToNext()) {
+                // 提取活动字段信息
+                int activityId = cursor.getInt(0);
+                String activityTitle = cursor.getString(1);
+                String activityType = cursor.getString(2);
+                int hostId = cursor.getInt(3);
+                int peopleNum = cursor.getInt(4);
+                String startTime = cursor.getString(5);
+                String endTime = cursor.getString(6);
+                String activityIntro = cursor.getString(7);
+                String activityAdd = cursor.getString(8);
+                int maxNum = cursor.getInt(9);
+                String creatorName = cursor.getString(10);
+                try {
+                    if (dateFormat.parse(startTime).compareTo(currentTime) > 0) {
+                        drawActivity(view, activityId, activityTitle, activityType, peopleNum, maxNum,
+                                startTime, endTime, activityIntro, activityAdd, creatorName);
+                    }
+                } catch (ParseException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+            cursor.close();
+            db.close();
+        }
+    }
+
+    // 渲染特定组团信息
+    private void drawActivity(View view, int activityId, String title, String type, int capacity, int maximum,
+                              String startTime, String endTime, String intro, String address, String creatorName) {
+        LinearLayout linearLayout = view.findViewById(R.id.group_find_container);
+        CardView cardView = new CardView(requireContext());
+        cardView.setLayoutParams(new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+        ));
+        cardView.setCardBackgroundColor(Color.WHITE);
+        cardView.setRadius(20);
+        cardView.setCardElevation(8);
+        cardView.setUseCompatPadding(true);
+
+        LinearLayout innerLinearLayout = new LinearLayout(requireContext());
+        innerLinearLayout.setLayoutParams(new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                dpToPx(120)
+        ));
+        innerLinearLayout.setOrientation(LinearLayout.VERTICAL);
+        innerLinearLayout.setPadding(
+                dpToPx(15), dpToPx(2), dpToPx(15), 0
+        );
+
+        TextView titleTextView = new TextView(requireContext());
+        titleTextView.setLayoutParams(new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT, dpToPx(38)
+        ));
+        titleTextView.setBackgroundColor(Color.WHITE);
+        titleTextView.setGravity(Gravity.CENTER | Gravity.START);
+        titleTextView.setText(title);
+        titleTextView.setTextColor(Color.parseColor("#01345C"));
+        titleTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 27);
+        titleTextView.setTypeface(Typeface.DEFAULT_BOLD);
+
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT
+        );
+
+        LinearLayout dateTimeLayout = new LinearLayout(requireContext());
+        dateTimeLayout.setLayoutParams(layoutParams);
+        dateTimeLayout.setOrientation(LinearLayout.HORIZONTAL);
+        dateTimeLayout.setPadding(
+                0, dpToPx(5), 0, 0
+        );
+
+        TextView timeTextView = new TextView(requireContext());
+        timeTextView.setLayoutParams(new LinearLayout.LayoutParams(
+                0, dpToPx(30), 1
+        ));
+        timeTextView.setBackgroundColor(Color.WHITE);
+        timeTextView.setText("时间：" + startTime.split(" ")[0]);
+        timeTextView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 18);
+
+        TextView creatorTextView = new TextView(requireContext());
+        creatorTextView.setLayoutParams(new LinearLayout.LayoutParams(
+                0, dpToPx(30), 1
+        ));
+        creatorTextView.setBackgroundColor(Color.WHITE);
+        creatorTextView.setGravity(Gravity.END);
+        creatorTextView.setText("发起人：" + creatorName);
+        creatorTextView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 18);
+
+        dateTimeLayout.addView(timeTextView);
+        dateTimeLayout.addView(creatorTextView);
+
+        LinearLayout buttonsLayout = new LinearLayout(requireContext());
+        buttonsLayout.setLayoutParams(layoutParams);
+        buttonsLayout.setOrientation(LinearLayout.HORIZONTAL);
+        buttonsLayout.setPadding(
+                dpToPx(10), dpToPx(5), dpToPx(10), 0
+        );
+
+        Button detailsButton = new Button(requireContext());
+        LinearLayout.LayoutParams detailsButtonParams = new LinearLayout.LayoutParams(
+                0, dpToPx(30), 1
+        );
+        detailsButtonParams.setMarginEnd(dpToPx(140));
+        detailsButton.setLayoutParams(detailsButtonParams);
+        detailsButton.setBackgroundColor(Color.parseColor("#058BC8"));
+        detailsButton.setGravity(Gravity.CENTER);
+        detailsButton.setSingleLine(true);
+        detailsButton.setEllipsize(TextUtils.TruncateAt.END);
+        detailsButton.setText("查看详情");
+        detailsButton.setTextColor(Color.WHITE);
+        detailsButton.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
+        detailsButton.setTypeface(Typeface.DEFAULT_BOLD);
+        detailsButton.setPadding(0, 0, 0, 0);
+        detailsButton.setOnClickListener(v -> {
+            AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getActivity());
+            LayoutInflater inflater1 = GroupFindFragment.this.getLayoutInflater();
+            View dialogView = inflater1.inflate(R.layout.dialog_group_activity_detail, null);
+            TextView titleView = dialogView.findViewById(R.id.group_activity_title);
+            titleView.setText(title);
+            TextView category = dialogView.findViewById(R.id.group_activity_category);
+            category.setText(type);
+            TextView creator = dialogView.findViewById(R.id.group_activity_creator);
+            creator.setText(creatorName);
+            TextView person = dialogView.findViewById(R.id.group_activity_person);
+            person.setText(capacity + "/" + maximum);
+            TextView time = dialogView.findViewById(R.id.group_activity_time);
+            time.setText(startTime.split(" ")[0] + " " + startTime.split(" ")[1] + "-" + endTime.split(" ")[1]);
+            TextView location = dialogView.findViewById(R.id.group_activity_location);
+            location.setText(address);
+            TextView description = dialogView.findViewById(R.id.group_activity_content);
+            description.setText(intro);
+            Button closeButton = dialogView.findViewById(R.id.group_activity_close_button);
+            dialogBuilder.setView(dialogView);
+            AlertDialog alertDialog = dialogBuilder.create();
+
+            closeButton.setOnClickListener(v1 -> alertDialog.dismiss());
+            alertDialog.show();
+        });
+
+        Button joinButton = new Button(requireContext());
+        LinearLayout.LayoutParams joinButtonParams = new LinearLayout.LayoutParams(
+                0, dpToPx(30), 1
+        );
+        joinButton.setLayoutParams(joinButtonParams);
+        joinButton.setBackgroundColor(Color.parseColor("#E61A9F1F"));
+        joinButton.setGravity(Gravity.CENTER);
+        joinButton.setSingleLine(true);
+        joinButton.setText("加入活动");
+        joinButton.setTextColor(Color.WHITE);
+        joinButton.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
+        joinButton.setTypeface(Typeface.DEFAULT_BOLD);
+        joinButton.setPadding(0, 0, 0, 0);
+        joinButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getActivity());
+                LayoutInflater inflater1 = GroupFindFragment.this.getLayoutInflater();
+                View dialogView = inflater1.inflate(R.layout.dialog_confirm, null);
+                TextView titleView = dialogView.findViewById(R.id.confirm_title);
+                titleView.setText("确认是否加入活动：" + title);
+
+                dialogBuilder.setView(dialogView);
+                AlertDialog alertDialog = dialogBuilder.create();
+
+                Button button = dialogView.findViewById(R.id.confirm_yes_button);
+                button.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        addActivity(activityId);
+                        alertDialog.dismiss();
+                    }
+                });
+                button = dialogView.findViewById(R.id.confirm_no_button);
+                button.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        alertDialog.dismiss();
+                    }
+                });
+                alertDialog.show();
+            }
+        });
+
+        buttonsLayout.addView(detailsButton);
+        buttonsLayout.addView(joinButton);
+        innerLinearLayout.addView(titleTextView);
+        innerLinearLayout.addView(dateTimeLayout);
+        innerLinearLayout.addView(buttonsLayout);
+        cardView.addView(innerLinearLayout);
+        linearLayout.addView(cardView);
+    }
+
+    // 用户加入活动
+    private void addActivity(int activityId) {
+        Log.d("activity", String.valueOf(activityId));
+        SQLiteDatabase db;
+        try (DataBaseHelper dbHelper = new DataBaseHelper(getActivity(), "DataBase.db", null, 1)) {
+            db = dbHelper.getWritableDatabase();
+            SharedPreferences sharedPreferences = getActivity().getSharedPreferences("LoginInfor", MODE_PRIVATE);
+            int userId = sharedPreferences.getInt("UserID", -1);
+
+            int currentNum = getCurrentPeopleNum(db, activityId);
+            int maxNum = getMaxNum(db, activityId);
+
+            // 检查是否达到人数上限
+            if (currentNum >= maxNum) {
+                Toast.makeText(getActivity(), "活动人数已达上限", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            db.execSQL("UPDATE Groups SET peopleNum = peopleNum + 1 WHERE id = ?", new String[]{String.valueOf(activityId)});
+            ContentValues values = new ContentValues();
+            values.put("userId", userId);
+            values.put("activityId", activityId);
+            db.insert("UserActivity", null, values);
+            db.close();
+            Toast.makeText(getActivity(), "成功加入活动", Toast.LENGTH_SHORT).show();
+            draw(getView());
+        }
+    }
+
+    // 获取当前活动的人数
+    private int getCurrentPeopleNum(SQLiteDatabase db, int activityId) {
+        Cursor cursor = db.rawQuery("SELECT peopleNum FROM Groups WHERE id = ?", new String[]{String.valueOf(activityId)});
+        if (cursor.moveToFirst()) {
+            int currentPeopleNum = cursor.getInt(0);
+            cursor.close();
+            return currentPeopleNum;
+        }
+        cursor.close();
+        return 0;
+    }
+
+    // 获取活动的最大人数
+    private int getMaxNum(SQLiteDatabase db, int activityId) {
+        Cursor cursor = db.rawQuery("SELECT maxNum FROM Groups WHERE id = ?", new String[]{String.valueOf(activityId)});
+        if (cursor.moveToFirst()) {
+            int maxNum = cursor.getInt(0);
+            cursor.close();
+            return maxNum;
+        }
+        cursor.close();
+        return 0;
+    }
+
+    // 创建活动
+    private void createActivity(ImageButton button) {
         button.setOnClickListener(v -> {
             AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getActivity());
             LayoutInflater inflater1 = GroupFindFragment.this.getLayoutInflater();
@@ -261,7 +410,6 @@ public class GroupFindFragment extends Fragment {
                             c.set(yearOfYear, monthOfYear, dayOfMonth);
                             int hour = c.get(Calendar.HOUR_OF_DAY);
                             int minute = c.get(Calendar.MINUTE);
-                            // 创建一个新的时间选择器对话框对象
                             TimePickerDialog timePickerDialog = new TimePickerDialog(getContext(),
                                     (timerView, hourOfDay, minuteOfDay) -> {
                                         c.set(Calendar.HOUR_OF_DAY, hourOfDay);
@@ -298,7 +446,10 @@ public class GroupFindFragment extends Fragment {
                                             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault());
                                             Date startTime = dateFormat.parse(startTimeText.getText().toString());
                                             Date endTime = dateFormat.parse(endTimeString);
-                                            if (endTime.before(startTime)) {
+                                            if (!isSameDay(startTime, endTime)) {
+                                                Toast.makeText(getContext(), "开始时间和结束时间必须是同一天", Toast.LENGTH_SHORT).show();
+                                                endTimeText.setText("");
+                                            } else if (endTime.before(startTime)) {
                                                 Toast.makeText(getContext(), "结束时间不能早于开始时间", Toast.LENGTH_SHORT).show();
                                                 endTimeText.setText("");
                                             } else {
@@ -362,8 +513,10 @@ public class GroupFindFragment extends Fragment {
                                 TextUtils.isEmpty(startTime) || TextUtils.isEmpty(endTime) || TextUtils.isEmpty(category)) {
                             Toast.makeText(getContext(), "请输入完整信息", Toast.LENGTH_SHORT).show();
                         } else {
+                            addNewGroupActivity(name, category, startTime, endTime, desc, location, maxNum);
                             alertDialog.dismiss();
-                            Toast.makeText(getContext(), "已成功创建团体", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), "已成功创建组团活动", Toast.LENGTH_SHORT).show();
+                            draw(getView());
                         }
                     } catch (NumberFormatException e) {
                         Toast.makeText(getActivity(), "请输入有效的数字", Toast.LENGTH_SHORT).show();
@@ -375,25 +528,31 @@ public class GroupFindFragment extends Fragment {
         });
     }
 
-    private void addNewGroupActivity() {
-        try (DataBaseHelper dbHelper = new DataBaseHelper(getActivity(), "DataBase.db", null, 1);
-             SQLiteDatabase db = dbHelper.getWritableDatabase()) {
+    private void addNewGroupActivity(String title, String type, String startTime, String endTime,
+                                     String intro, String address, int maxNum) {
+        SQLiteDatabase db;
+        try (DataBaseHelper dbHelper = new DataBaseHelper(getActivity(), "DataBase.db", null, 1)) {
+            db = dbHelper.getWritableDatabase();
+            SharedPreferences sharedPreferences = getActivity().getSharedPreferences("LoginInfor", MODE_PRIVATE);
+            int userId = sharedPreferences.getInt("UserID", -1);
+            // 插入组团活动表
             ContentValues values = new ContentValues();
-            values.put("activityId", 1);
-            values.put("activityTitle", "活动标题");
-            values.put("activityType", "活动类型");
-            values.put("hostId", 1);
-            values.put("peopleNum", 10);
-            values.put("startTime", "2023-01-01 09:00:00");
-            values.put("endTime", "2023-01-01 12:00:00");
-            values.put("activityIntro", "活动介绍");
-            values.put("activityAdd", "活动地址");
-            values.put("maxNum", 20);
-
-// 插入数据
-            long newRowId = db.insert("Groups", null, values);
-        } catch (Exception e) {
-            // 处理异常
+            values.put("activityTitle", title);
+            values.put("activityType", type);
+            values.put("hostId", userId);
+            values.put("peopleNum", 1);
+            values.put("startTime", startTime);
+            values.put("endTime", endTime);
+            values.put("activityIntro", intro);
+            values.put("activityAdd", address);
+            values.put("maxNum", maxNum);
+            long insertId = db.insert("Groups", null, values);
+            // 插入联系表
+            values = new ContentValues();
+            values.put("userId", userId);
+            values.put("activityId", (int) insertId);
+            db.insert("UserActivity", null, values);
+            db.close();
         }
     }
 
@@ -401,5 +560,17 @@ public class GroupFindFragment extends Fragment {
         float density = getResources().getDisplayMetrics().density;
         return Math.round(dp * density);
     }
-}
 
+    // 检查两个日期是否为同一天
+    private boolean isSameDay(Date date1, Date date2) {
+        Calendar cal1 = Calendar.getInstance();
+        cal1.setTime(date1);
+
+        Calendar cal2 = Calendar.getInstance();
+        cal2.setTime(date2);
+
+        return cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR) &&
+                cal1.get(Calendar.MONTH) == cal2.get(Calendar.MONTH) &&
+                cal1.get(Calendar.DAY_OF_MONTH) == cal2.get(Calendar.DAY_OF_MONTH);
+    }
+}

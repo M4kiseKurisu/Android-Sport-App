@@ -127,7 +127,20 @@ public class ClockInActivity extends AppCompatActivity {
                     ViewGroup.LayoutParams.WRAP_CONTENT
             );
             usernameTextView.setLayoutParams(usernameTextViewParams);
-            String user = userId + "-" + sportItem + "-" + sportAdd;
+
+
+            String userName = null;
+            String[] columns = {"name"};
+            String selection = "id = ?";
+            String[] selectionArgs = {String.valueOf(userId)};
+            Cursor cursor1 = db.query("User", columns, selection, selectionArgs, null, null, null);
+            if (cursor1.moveToFirst()) {
+                userName = cursor1.getString(cursor1.getColumnIndex("name"));
+            }
+            cursor1.close();
+
+
+            String user = userName + "-" + sportItem + "-" + sportAdd;
             usernameTextView.setText(user);
             usernameTextView.setTextSize(18);
             usernameTextView.setTypeface(Typeface.DEFAULT_BOLD);

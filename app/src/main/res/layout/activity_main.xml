@@ -100,7 +100,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="20dp"
-                android:text="界面2"
+                android:text="组团活动"
                 android:gravity="center"/>
 
         </LinearLayout>
@@ -150,7 +150,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="20dp"
-                android:text="界面4"
+                android:text="攻略文章"
                 android:gravity="center"/>
 
         </LinearLayout>
