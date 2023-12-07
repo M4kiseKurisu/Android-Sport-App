@@ -6,10 +6,12 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.ContentUris;
 import android.content.ContentValues;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -26,6 +28,7 @@ import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ImageSpan;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -56,7 +59,7 @@ public class ClockInCreateActivity extends AppCompatActivity {
     private TextView textViewEnd;
     private EditText sportPlace;
     private Button addImg;
-    private String imagePath = "null";
+    private String imagePath = null;
     private static final int REQUEST_CODE_PICK_IMAGE = 1;
     private DataBaseHelper dbHelper = new DataBaseHelper(this, "DataBase.db", null, 1);
     private String[] sports = new String[]{"TD线", "跑步", "篮球", "排球", "羽毛球",
@@ -124,6 +127,22 @@ public class ClockInCreateActivity extends AppCompatActivity {
         createBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(sportIndex == -1){
+                    showAlert("打卡提示","请至少选择一项运动");
+                    return;
+                } else if(textViewStart.getText().toString().isEmpty()){
+                    showAlert("打卡提示","请选择开始时间");
+                    return;
+                } else if(textViewEnd.getText().toString().isEmpty()){
+                    showAlert("打卡提示","请选择结束时间");
+                    return;
+                } else if(sportPlace.getText().toString().isEmpty()){
+                    showAlert("打卡提示","请输入运动地点");
+                    return;
+                } else if(imagePath == null){
+                    showAlert("打卡提示","请选择一张图片");
+                    return;
+                }
                 ContentValues values = new ContentValues();
                 SharedPreferences sharedPreferences = getSharedPreferences("LoginInfor", MODE_PRIVATE);
                 int userId = sharedPreferences.getInt("UserID", -1);
@@ -350,6 +369,27 @@ public class ClockInCreateActivity extends AppCompatActivity {
                 Toast.makeText(this, "需要授予读取外部存储器的权限才能加载图片", Toast.LENGTH_SHORT).show();
             }
         }
+    }
+    private void showAlert(String title, String message) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        LayoutInflater inflater = getLayoutInflater();
+        View dialogView = inflater.inflate(R.layout.activity_clock_in_alert, null);
+
+        TextView dialogMessage = dialogView.findViewById(R.id.dialog_message);
+        dialogMessage.setText(message);
+
+        builder.setView(dialogView)
+                .setTitle(title)
+                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // 点击确定按钮后的操作
+                        dialog.dismiss();
+                    }
+                });
+
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
     }
 
 }
