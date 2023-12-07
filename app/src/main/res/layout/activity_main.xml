@@ -94,7 +94,7 @@
                 android:layout_height="70dp"
                 android:background="#00000000"
                 android:scaleType="fitXY"
-                android:src="@drawable/image2" />
+                android:src="@drawable/group_img" />
 
             <TextView
                 android:layout_marginTop="10dp"
@@ -117,9 +117,9 @@
                 android:id="@+id/clock_in_button"
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
-                android:background="#00000000"
                 android:scaleType="fitXY"
-                android:src="@drawable/image2" 
+                android:src="@drawable/clock_in_img"
+                android:background="#00000000"
                 />
 
             <TextView
@@ -144,7 +144,7 @@
                 android:layout_height="70dp"
                 android:background="#00000000"
                 android:scaleType="fitXY"
-                android:src="@drawable/image2" />
+                android:src="@drawable/tutorial_img" />
 
             <TextView
                 android:layout_marginTop="10dp"
