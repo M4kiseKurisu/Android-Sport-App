@@ -37,8 +37,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        TextView text = findViewById(R.id.userId);
-        text.setText(String.valueOf(userId));
 
         dbHelper = new DataBaseHelper(this, "DataBase.db", null, 1);
         dbHelper.getWritableDatabase();
