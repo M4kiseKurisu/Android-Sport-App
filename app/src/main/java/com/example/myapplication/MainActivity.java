@@ -13,6 +13,7 @@ import com.example.myapplication.tutorial.TutorialActivity;
 
 public class MainActivity extends AppCompatActivity {
     private ImageButton button1;
+    private ImageButton button4;
     private DataBaseHelper dbHelper;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
         button1 = findViewById(R.id.button1);
         TextView text = findViewById(R.id.userId);
         text.setText(String.valueOf(userId));
-        button1.setOnClickListener(new MyClickListener());
+        //button1.setOnClickListener(new MyClickListener());
         dbHelper = new DataBaseHelper(this, "DataBase.db", null, 1);
         dbHelper.getWritableDatabase();
         /*Button createDatabase = (Button) findViewById(R.id.create_database);
@@ -34,18 +35,28 @@ public class MainActivity extends AppCompatActivity {
                 dbHelper.getWritableDatabase();
             }
         });*/
-    }
 
-    private class MyClickListener implements View.OnClickListener {
-
-
-        @Override
-        public void onClick(View v) {
-            if (v.equals(button1)) {
+        button4 = findViewById(R.id.button4);
+        button4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 Intent intent = new Intent();
                 intent.setClass(MainActivity.this, TutorialActivity.class);
                 startActivity(intent);
             }
-        }
+        });
     }
+
+//    private class MyClickListener implements View.OnClickListener {
+//
+//
+//        @Override
+//        public void onClick(View v) {
+//            if (v.equals(button1)) {
+//                Intent intent = new Intent();
+//                intent.setClass(MainActivity.this, TutorialActivity.class);
+//                startActivity(intent);
+//            }
+//        }
+//    }
 }

@@ -59,9 +59,10 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="#888888"
-            android:layout_marginTop="10dp"/>
+            android:layout_marginTop="10dp" />
 
         <LinearLayout
+            android:visibility="gone"
             android:id="@+id/tutorial_text_1"
             android:layout_width="match_parent"
             android:layout_height="100dp"
@@ -76,7 +77,7 @@
                 android:layout_weight="4"
                 android:layout_height="90dp"
                 android:layout_marginTop="5dp"
-                android:background="@drawable/image3"
+                android:background="@drawable/image4"
                 android:layout_marginRight="10dp">
 
             </ImageButton>
@@ -90,6 +91,7 @@
                 android:layout_marginLeft="10dp">
 
                 <TextView
+                    android:id="@+id/tutorial_1_title"
                     android:layout_marginTop="5dp"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
@@ -120,6 +122,7 @@
                 </LinearLayout>
 
                 <TextView
+                    android:id="@+id/tutorial_1_category"
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
                     android:layout_marginTop="5dp"
@@ -135,6 +138,8 @@
         </LinearLayout>
 
         <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/tutorial_text_2"
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:layout_marginTop="10dp"
@@ -142,12 +147,13 @@
             android:orientation="horizontal">
 
             <ImageButton
+                android:id="@+id/tutorial_2"
                 android:layout_marginLeft="10dp"
                 android:layout_width="0dp"
                 android:layout_weight="4"
                 android:layout_height="90dp"
                 android:layout_marginTop="5dp"
-                android:background="@drawable/image3"
+                android:background="@drawable/image4"
                 android:layout_marginRight="10dp">
 
             </ImageButton>
@@ -161,6 +167,7 @@
                 android:layout_marginLeft="10dp">
 
                 <TextView
+                    android:id="@+id/tutorial_2_title"
                     android:layout_marginTop="5dp"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
@@ -191,6 +198,7 @@
                 </LinearLayout>
 
                 <TextView
+                    android:id="@+id/tutorial_2_category"
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
                     android:layout_marginTop="5dp"
@@ -206,6 +214,8 @@
         </LinearLayout>
 
         <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/tutorial_text_3"
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:layout_marginTop="10dp"
@@ -213,12 +223,13 @@
             android:orientation="horizontal">
 
             <ImageButton
+                android:id="@+id/tutorial_3"
                 android:layout_marginLeft="10dp"
                 android:layout_width="0dp"
                 android:layout_weight="4"
                 android:layout_height="90dp"
                 android:layout_marginTop="5dp"
-                android:background="@drawable/image3"
+                android:background="@drawable/image4"
                 android:layout_marginRight="10dp">
 
             </ImageButton>
@@ -232,6 +243,7 @@
                 android:layout_marginLeft="10dp">
 
                 <TextView
+                    android:id="@+id/tutorial_3_title"
                     android:layout_marginTop="5dp"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
@@ -262,6 +274,7 @@
                 </LinearLayout>
 
                 <TextView
+                    android:id="@+id/tutorial_3_category"
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
                     android:layout_marginTop="5dp"
@@ -277,6 +290,8 @@
         </LinearLayout>
 
         <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/tutorial_text_4"
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:layout_marginTop="10dp"
@@ -284,12 +299,13 @@
             android:orientation="horizontal">
 
             <ImageButton
+                android:id="@+id/tutorial_4"
                 android:layout_marginLeft="10dp"
                 android:layout_width="0dp"
                 android:layout_weight="4"
                 android:layout_height="90dp"
                 android:layout_marginTop="5dp"
-                android:background="@drawable/image3"
+                android:background="@drawable/image4"
                 android:layout_marginRight="10dp">
 
             </ImageButton>
@@ -303,6 +319,7 @@
                 android:layout_marginLeft="10dp">
 
                 <TextView
+                    android:id="@+id/tutorial_4_title"
                     android:layout_marginTop="5dp"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
@@ -333,6 +350,7 @@
                 </LinearLayout>
 
                 <TextView
+                    android:id="@+id/tutorial_4_category"
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
                     android:layout_marginTop="5dp"
@@ -348,6 +366,8 @@
         </LinearLayout>
 
         <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/tutorial_text_5"
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:layout_marginTop="10dp"
@@ -355,12 +375,13 @@
             android:orientation="horizontal">
 
             <ImageButton
+                android:id="@+id/tutorial_5"
                 android:layout_marginLeft="10dp"
                 android:layout_width="0dp"
                 android:layout_weight="4"
                 android:layout_height="90dp"
                 android:layout_marginTop="5dp"
-                android:background="@drawable/image3"
+                android:background="@drawable/image4"
                 android:layout_marginRight="10dp">
 
             </ImageButton>
@@ -374,6 +395,7 @@
                 android:layout_marginLeft="10dp">
 
                 <TextView
+                    android:id="@+id/tutorial_5_title"
                     android:layout_marginTop="5dp"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
@@ -403,7 +425,9 @@
 
                 </LinearLayout>
 
+
                 <TextView
+                    android:id="@+id/tutorial_5_category"
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
                     android:layout_marginTop="5dp"
@@ -419,6 +443,8 @@
         </LinearLayout>
 
         <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/tutorial_text_6"
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:layout_marginTop="10dp"
@@ -426,12 +452,13 @@
             android:orientation="horizontal">
 
             <ImageButton
+                android:id="@+id/tutorial_6"
                 android:layout_marginLeft="10dp"
                 android:layout_width="0dp"
                 android:layout_weight="4"
                 android:layout_height="90dp"
                 android:layout_marginTop="5dp"
-                android:background="@drawable/image3"
+                android:background="@drawable/image4"
                 android:layout_marginRight="10dp">
 
             </ImageButton>
@@ -445,6 +472,7 @@
                 android:layout_marginLeft="10dp">
 
                 <TextView
+                    android:id="@+id/tutorial_6_title"
                     android:layout_marginTop="5dp"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
@@ -475,6 +503,7 @@
                 </LinearLayout>
 
                 <TextView
+                    android:id="@+id/tutorial_6_category"
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
                     android:layout_marginTop="5dp"
@@ -490,6 +519,8 @@
         </LinearLayout>
 
         <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/tutorial_text_7"
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:layout_marginTop="10dp"
@@ -497,12 +528,13 @@
             android:orientation="horizontal">
 
             <ImageButton
+                android:id="@+id/tutorial_7"
                 android:layout_marginLeft="10dp"
                 android:layout_width="0dp"
                 android:layout_weight="4"
                 android:layout_height="90dp"
                 android:layout_marginTop="5dp"
-                android:background="@drawable/image3"
+                android:background="@drawable/image4"
                 android:layout_marginRight="10dp">
 
             </ImageButton>
@@ -516,6 +548,7 @@
                 android:layout_marginLeft="10dp">
 
                 <TextView
+                    android:id="@+id/tutorial_7_title"
                     android:layout_marginTop="5dp"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
@@ -546,6 +579,7 @@
                 </LinearLayout>
 
                 <TextView
+                    android:id="@+id/tutorial_7_category"
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
                     android:layout_marginTop="5dp"
@@ -561,6 +595,8 @@
         </LinearLayout>
 
         <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/tutorial_text_8"
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:layout_marginTop="10dp"
@@ -568,12 +604,13 @@
             android:orientation="horizontal">
 
             <ImageButton
+                android:id="@+id/tutorial_8"
                 android:layout_marginLeft="10dp"
                 android:layout_width="0dp"
                 android:layout_weight="4"
                 android:layout_height="90dp"
                 android:layout_marginTop="5dp"
-                android:background="@drawable/image3"
+                android:background="@drawable/image4"
                 android:layout_marginRight="10dp">
 
             </ImageButton>
@@ -587,6 +624,7 @@
                 android:layout_marginLeft="10dp">
 
                 <TextView
+                    android:id="@+id/tutorial_8_title"
                     android:layout_marginTop="5dp"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
@@ -617,6 +655,7 @@
                 </LinearLayout>
 
                 <TextView
+                    android:id="@+id/tutorial_8_category"
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
                     android:layout_marginTop="5dp"
@@ -632,6 +671,8 @@
         </LinearLayout>
 
         <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/tutorial_text_9"
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:layout_marginTop="10dp"
@@ -639,12 +680,13 @@
             android:orientation="horizontal">
 
             <ImageButton
+                android:id="@+id/tutorial_9"
                 android:layout_marginLeft="10dp"
                 android:layout_width="0dp"
                 android:layout_weight="4"
                 android:layout_height="90dp"
                 android:layout_marginTop="5dp"
-                android:background="@drawable/image3"
+                android:background="@drawable/image4"
                 android:layout_marginRight="10dp">
 
             </ImageButton>
@@ -658,6 +700,7 @@
                 android:layout_marginLeft="10dp">
 
                 <TextView
+                    android:id="@+id/tutorial_9_title"
                     android:layout_marginTop="5dp"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
@@ -688,6 +731,7 @@
                 </LinearLayout>
 
                 <TextView
+                    android:id="@+id/tutorial_9_category"
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
                     android:layout_marginTop="5dp"
@@ -703,6 +747,8 @@
         </LinearLayout>
 
         <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/tutorial_text_10"
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:layout_marginTop="10dp"
@@ -710,12 +756,13 @@
             android:orientation="horizontal">
 
             <ImageButton
+                android:id="@+id/tutorial_10"
                 android:layout_marginLeft="10dp"
                 android:layout_width="0dp"
                 android:layout_weight="4"
                 android:layout_height="90dp"
                 android:layout_marginTop="5dp"
-                android:background="@drawable/image3"
+                android:background="@drawable/image4"
                 android:layout_marginRight="10dp">
 
             </ImageButton>
@@ -729,6 +776,7 @@
                 android:layout_marginLeft="10dp">
 
                 <TextView
+                    android:id="@+id/tutorial_10_title"
                     android:layout_marginTop="5dp"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
@@ -759,6 +807,7 @@
                 </LinearLayout>
 
                 <TextView
+                    android:id="@+id/tutorial_10_category"
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
                     android:layout_marginTop="5dp"
@@ -772,6 +821,16 @@
             </LinearLayout>
 
         </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="显示当前页码"
+            android:textSize="16dp"
+            android:textColor="#000000"
+            android:layout_marginTop="6dp"
+            android:layout_marginLeft="12dp"
+            android:id="@+id/activity_show_page"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -784,6 +843,7 @@
                 android:layout_weight="1">
 
                 <Button
+                    android:id="@+id/tutorial_main_firstPage"
                     android:layout_width="match_parent"
                     android:layout_marginTop="5dp"
                     android:layout_height="50dp"
@@ -798,6 +858,7 @@
                 android:layout_weight="1">
 
                 <Button
+                    android:id="@+id/tutorial_main_beforePage"
                     android:layout_width="match_parent"
                     android:layout_marginTop="5dp"
                     android:layout_height="50dp"
@@ -812,6 +873,7 @@
                 android:layout_weight="1">
 
                 <Button
+                    android:id="@+id/tutorial_main_afterPage"
                     android:layout_width="match_parent"
                     android:layout_marginTop="5dp"
                     android:layout_height="50dp"
@@ -826,6 +888,7 @@
                 android:layout_weight="1">
 
                 <Button
+                    android:id="@+id/tutorial_main_lastPage"
                     android:layout_width="match_parent"
                     android:layout_marginTop="5dp"
                     android:layout_height="50dp"

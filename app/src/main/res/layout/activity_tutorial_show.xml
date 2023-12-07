@@ -93,15 +93,50 @@
                     android:textSize="16dp"
                     android:text="类型显示"/>
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="点赞数："
+                    android:textColor="@color/group_black"
+                    android:textSize="16dp"
+                    android:layout_marginLeft="20dp"/>
+
+                <TextView
+                    android:id="@+id/tutorial_favors"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:textColor="@color/group_black"
+                    android:textSize="16dp"
+                    android:text="点赞显示"/>
+
             </LinearLayout>
 
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/tutorial_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="6px"
+            android:paddingBottom="6px"
+            android:layout_marginTop="30px"
+            android:layout_marginLeft="20px"
+            android:layout_marginRight="20px"
+            android:background="@drawable/white_background"
+            android:textSize="20dp"
+            android:textColor="#000000"
+            android:text="这里是标题">
+
+        </TextView>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <TextView
+                android:id="@+id/tutorial_content_all"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingTop="6px"
@@ -176,6 +211,7 @@
             android:orientation="vertical">
 
             <EditText
+                android:id="@+id/comment_content"
                 android:layout_width="match_parent"
                 android:layout_height="400px"
                 android:background="@drawable/activity_editview"
@@ -191,6 +227,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="right">
                 <Button
+                    android:id="@+id/send_comment"
                     android:layout_width="100dp"
                     android:layout_height="90px"
                     android:layout_marginTop="20px"
@@ -211,6 +248,8 @@
             android:layout_marginTop="10dp"/>
 
         <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/comment_1"
             android:layout_width="match_parent"
             android:layout_height="400px"
             android:layout_marginTop="20px"
@@ -222,30 +261,43 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/comment_1_id"
                     android:layout_width="0dp"
-                    android:layout_weight="4"
+                    android:layout_weight="2"
                     android:layout_height="wrap_content"
                     android:text="显示评论id"
                     android:layout_marginTop="24px"
                     android:layout_marginBottom="24px"
                     android:textSize="20dp"/>
 
-                <Button
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="90px"
-                    android:layout_marginTop="20px"
-                    android:layout_marginRight="20px"
-                    android:text="点赞"
-                    android:textColor="#ffffff"
-                    android:textSize="18dp"
-                    android:background="@drawable/activity_greenbutton"/>
+                <!--                <TextView-->
+                <!--                    android:id="@+id/comment_1_Likes"-->
+                <!--                    android:layout_width="0dp"-->
+                <!--                    android:layout_weight="2"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:text="当前点赞数："-->
+                <!--                    android:layout_marginTop="24px"-->
+                <!--                    android:layout_marginBottom="24px"-->
+                <!--                    android:textSize="20dp"/>-->
+
+                <!--                <Button-->
+                <!--                    android:id="@+id/comment_1_favor"-->
+                <!--                    android:layout_width="0dp"-->
+                <!--                    android:layout_weight="1"-->
+                <!--                    android:layout_height="90px"-->
+                <!--                    android:layout_marginTop="20px"-->
+                <!--                    android:layout_marginRight="20px"-->
+                <!--                    android:text="点赞"-->
+                <!--                    android:textColor="#ffffff"-->
+                <!--                    android:textSize="18dp"-->
+                <!--                    android:background="@drawable/activity_greenbutton"/>-->
 
             </LinearLayout>
 
             <TextView
+                android:id="@+id/comment_1_content"
                 android:layout_width="match_parent"
-                android:layout_height="400px"
+                android:layout_height="match_parent"
                 android:background="@drawable/activity_editview"
                 android:layout_marginLeft="20px"
                 android:layout_marginRight="20px"
@@ -257,6 +309,413 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="right">
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/comment_2"
+            android:layout_width="match_parent"
+            android:layout_height="400px"
+            android:layout_marginTop="20px"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/comment_2_id"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="wrap_content"
+                    android:text="显示评论id"
+                    android:layout_marginTop="24px"
+                    android:layout_marginBottom="24px"
+                    android:textSize="20dp"/>
+
+                <!--                <TextView-->
+                <!--                    android:id="@+id/comment_2_Likes"-->
+                <!--                    android:layout_width="0dp"-->
+                <!--                    android:layout_weight="2"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:text="当前点赞数："-->
+                <!--                    android:layout_marginTop="24px"-->
+                <!--                    android:layout_marginBottom="24px"-->
+                <!--                    android:textSize="20dp"/>-->
+
+                <!--                <Button-->
+                <!--                    android:id="@+id/comment_2_favor"-->
+                <!--                    android:layout_width="0dp"-->
+                <!--                    android:layout_weight="1"-->
+                <!--                    android:layout_height="90px"-->
+                <!--                    android:layout_marginTop="20px"-->
+                <!--                    android:layout_marginRight="20px"-->
+                <!--                    android:text="点赞"-->
+                <!--                    android:textColor="#ffffff"-->
+                <!--                    android:textSize="18dp"-->
+                <!--                    android:background="@drawable/activity_greenbutton"/>-->
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/comment_2_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/activity_editview"
+                android:layout_marginLeft="20px"
+                android:layout_marginRight="20px"
+                android:gravity="top"
+                android:inputType="textMultiLine"
+                android:scrollbars="vertical"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right">
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/comment_3"
+            android:layout_width="match_parent"
+            android:layout_height="400px"
+            android:layout_marginTop="20px"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/comment_3_id"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="wrap_content"
+                    android:text="显示评论id"
+                    android:layout_marginTop="24px"
+                    android:layout_marginBottom="24px"
+                    android:textSize="20dp"/>
+
+                <!--                <TextView-->
+                <!--                    android:id="@+id/comment_3_Likes"-->
+                <!--                    android:layout_width="0dp"-->
+                <!--                    android:layout_weight="2"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:text="当前点赞数："-->
+                <!--                    android:layout_marginTop="24px"-->
+                <!--                    android:layout_marginBottom="24px"-->
+                <!--                    android:textSize="20dp"/>-->
+
+                <!--                <Button-->
+                <!--                    android:id="@+id/comment_3_favor"-->
+                <!--                    android:layout_width="0dp"-->
+                <!--                    android:layout_weight="1"-->
+                <!--                    android:layout_height="90px"-->
+                <!--                    android:layout_marginTop="20px"-->
+                <!--                    android:layout_marginRight="20px"-->
+                <!--                    android:text="点赞"-->
+                <!--                    android:textColor="#ffffff"-->
+                <!--                    android:textSize="18dp"-->
+                <!--                    android:background="@drawable/activity_greenbutton"/>-->
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/comment_3_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/activity_editview"
+                android:layout_marginLeft="20px"
+                android:layout_marginRight="20px"
+                android:gravity="top"
+                android:inputType="textMultiLine"
+                android:scrollbars="vertical"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right">
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/comment_4"
+            android:layout_width="match_parent"
+            android:layout_height="400px"
+            android:layout_marginTop="20px"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/comment_4_id"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="wrap_content"
+                    android:text="显示评论id"
+                    android:layout_marginTop="24px"
+                    android:layout_marginBottom="24px"
+                    android:textSize="20dp"/>
+
+                <!--                <TextView-->
+                <!--                    android:id="@+id/comment_4_Likes"-->
+                <!--                    android:layout_width="0dp"-->
+                <!--                    android:layout_weight="2"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:text="当前点赞数："-->
+                <!--                    android:layout_marginTop="24px"-->
+                <!--                    android:layout_marginBottom="24px"-->
+                <!--                    android:textSize="20dp"/>-->
+
+                <!--                <Button-->
+                <!--                    android:id="@+id/comment_4_favor"-->
+                <!--                    android:layout_width="0dp"-->
+                <!--                    android:layout_weight="1"-->
+                <!--                    android:layout_height="90px"-->
+                <!--                    android:layout_marginTop="20px"-->
+                <!--                    android:layout_marginRight="20px"-->
+                <!--                    android:text="点赞"-->
+                <!--                    android:textColor="#ffffff"-->
+                <!--                    android:textSize="18dp"-->
+                <!--                    android:background="@drawable/activity_greenbutton"/>-->
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/comment_4_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/activity_editview"
+                android:layout_marginLeft="20px"
+                android:layout_marginRight="20px"
+                android:gravity="top"
+                android:inputType="textMultiLine"
+                android:scrollbars="vertical"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right">
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/comment_5"
+            android:layout_width="match_parent"
+            android:layout_height="400px"
+            android:layout_marginTop="20px"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/comment_5_id"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="wrap_content"
+                    android:text="显示评论id"
+                    android:layout_marginTop="24px"
+                    android:layout_marginBottom="24px"
+                    android:textSize="20dp"/>
+
+                <!--                <TextView-->
+                <!--                    android:id="@+id/comment_5_Likes"-->
+                <!--                    android:layout_width="0dp"-->
+                <!--                    android:layout_weight="2"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:text="当前点赞数："-->
+                <!--                    android:layout_marginTop="24px"-->
+                <!--                    android:layout_marginBottom="24px"-->
+                <!--                    android:textSize="20dp"/>-->
+
+                <!--                <Button-->
+                <!--                    android:id="@+id/comment_5_favor"-->
+                <!--                    android:layout_width="0dp"-->
+                <!--                    android:layout_weight="1"-->
+                <!--                    android:layout_height="90px"-->
+                <!--                    android:layout_marginTop="20px"-->
+                <!--                    android:layout_marginRight="20px"-->
+                <!--                    android:text="点赞"-->
+                <!--                    android:textColor="#ffffff"-->
+                <!--                    android:textSize="18dp"-->
+                <!--                    android:background="@drawable/activity_greenbutton"/>-->
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/comment_5_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/activity_editview"
+                android:layout_marginLeft="20px"
+                android:layout_marginRight="20px"
+                android:gravity="top"
+                android:inputType="textMultiLine"
+                android:scrollbars="vertical"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right">
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/comment_6"
+            android:layout_width="match_parent"
+            android:layout_height="400px"
+            android:layout_marginTop="20px"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/comment_6_id"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="wrap_content"
+                    android:text="显示评论id"
+                    android:layout_marginTop="24px"
+                    android:layout_marginBottom="24px"
+                    android:textSize="20dp"/>
+
+                <!--                <TextView-->
+                <!--                    android:id="@+id/comment_6_Likes"-->
+                <!--                    android:layout_width="0dp"-->
+                <!--                    android:layout_weight="2"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:text="当前点赞数："-->
+                <!--                    android:layout_marginTop="24px"-->
+                <!--                    android:layout_marginBottom="24px"-->
+                <!--                    android:textSize="20dp"/>-->
+
+                <!--                <Button-->
+                <!--                    android:id="@+id/comment_6_favor"-->
+                <!--                    android:layout_width="0dp"-->
+                <!--                    android:layout_weight="1"-->
+                <!--                    android:layout_height="90px"-->
+                <!--                    android:layout_marginTop="20px"-->
+                <!--                    android:layout_marginRight="20px"-->
+                <!--                    android:text="点赞"-->
+                <!--                    android:textColor="#ffffff"-->
+                <!--                    android:textSize="18dp"-->
+                <!--                    android:background="@drawable/activity_greenbutton"/>-->
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/comment_6_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/activity_editview"
+                android:layout_marginLeft="20px"
+                android:layout_marginRight="20px"
+                android:gravity="top"
+                android:inputType="textMultiLine"
+                android:scrollbars="vertical"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right">
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="显示当前页码"
+            android:textSize="16dp"
+            android:textColor="#000000"
+            android:layout_marginTop="6dp"
+            android:layout_marginLeft="12dp"
+            android:id="@+id/activity_comment_page"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_weight="1">
+
+                <Button
+                    android:id="@+id/content_firstpage"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="5dp"
+                    android:layout_height="50dp"
+                    android:textSize="18dp"
+                    android:text="第一页" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_weight="1">
+
+                <Button
+                    android:id="@+id/content_beforepage"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="5dp"
+                    android:layout_height="50dp"
+                    android:textSize="18dp"
+                    android:text="上一页" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_weight="1">
+
+                <Button
+                    android:id="@+id/content_afterpage"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="5dp"
+                    android:layout_height="50dp"
+                    android:textSize="18dp"
+                    android:text="下一页" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_weight="1">
+
+                <Button
+                    android:id="@+id/content_lastpage"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="5dp"
+                    android:layout_height="50dp"
+                    android:textSize="18dp"
+                    android:text="最后一页" />
+
             </LinearLayout>
 
         </LinearLayout>
