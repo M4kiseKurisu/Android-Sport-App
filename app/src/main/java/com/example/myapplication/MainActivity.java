@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -16,7 +17,10 @@ import android.widget.TextView;
 import com.example.myapplication.group.GroupActivity;
 import com.example.myapplication.tutorial.TutorialActivity;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Random;
 
 import com.example.myapplication.clockIn.ClockInActivity;
@@ -48,7 +52,11 @@ public class MainActivity extends AppCompatActivity {
 
         dbHelper = new DataBaseHelper(this, "DataBase.db", null, 1);
         dbHelper.getWritableDatabase();
-        updateScrollView();
+        try {
+            updateScrollView();
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
         button2 = findViewById(R.id.button2);
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,13 +80,15 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    private void updateScrollView() {
+    private void updateScrollView() throws ParseException {
         LinearLayout verticalLayout = findViewById(R.id.verticalLayout);
         ArrayList<Integer> userParticipateId = searchUserGroupId();
         ArrayList<String> userParticipateType = searchUserGroupType(userParticipateId);
         ArrayList<GroupInfo> groupInfos = searchUserRecommendedGroup(userParticipateId,userParticipateType);
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         for (GroupInfo item : groupInfos) {
+            Button button = new Button(this);
+
             LinearLayout borderLayout = new LinearLayout(this);
             borderLayout.setBackgroundResource(R.drawable.textview_border);
             borderLayout.setLayoutParams((new LinearLayout.LayoutParams(
@@ -136,6 +146,14 @@ public class MainActivity extends AppCompatActivity {
             section4.addView(textViewTime);
             section4.addView(textViewTimeNum);
             borderLayout.addView(section4);
+            borderLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // 在这里执行跳转操作，例如启动新的 Activity
+                    Intent intent = new Intent(MainActivity.this, GroupActivity.class);
+                    startActivity(intent);
+                }
+            });
             verticalLayout.addView(borderLayout);
         }
 
@@ -216,7 +234,7 @@ public class MainActivity extends AppCompatActivity {
         return ans;
     }
 
-    public ArrayList<GroupInfo> searchUserRecommendedGroup(ArrayList<Integer> groupId, ArrayList<String> groupType) {
+    public ArrayList<GroupInfo> searchUserRecommendedGroup(ArrayList<Integer> groupId, ArrayList<String> groupType)  {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         String[] projection = {
                 "id", "hostId", "peopleNum", "startTime", "endTime", "maxNum", "activityTitle"
@@ -255,9 +273,16 @@ public class MainActivity extends AppCompatActivity {
                             break;
                         }
                     }
+                    Date currentTime = new Date(System.currentTimeMillis());
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
                     if (flag) {
-                        if (groupInfo.peopleNum < groupInfo.maxNum) {
-                            groupInfoList.add(groupInfo);
+                        try {
+                            if (groupInfo.peopleNum < groupInfo.maxNum && dateFormat.parse(groupInfo.startTime).compareTo(currentTime) > 0) {
+                                groupInfoList.add(groupInfo);
+                            }
+                        } catch (ParseException e) {
+                            throw new RuntimeException(e);
+                        }
                             /*if (weather.equals("晴天")) {
                                 groupInfoList.add(groupInfo);
                             } else {
@@ -266,7 +291,6 @@ public class MainActivity extends AppCompatActivity {
                                     groupInfoList.add(groupInfo);
                                 }
                             }*/
-                        }
                     }
                 } while (cursor.moveToNext());
                 cursor.close();
@@ -301,7 +325,15 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                     if (flag) {
-                        groupInfoList.add(groupInfo);
+                        try {
+                            Date currentTime = new Date(System.currentTimeMillis());
+                            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+                            if (groupInfo.peopleNum < groupInfo.maxNum && dateFormat.parse(groupInfo.startTime).compareTo(currentTime) > 0) {
+                                groupInfoList.add(groupInfo);
+                            }
+                        } catch (ParseException e) {
+                            throw new RuntimeException(e);
+                        }
                     }
                 } while (cursor.moveToNext());
             }

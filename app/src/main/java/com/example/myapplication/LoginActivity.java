@@ -56,6 +56,7 @@ public class LoginActivity extends AppCompatActivity {
 
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(intent);
+                    finish();
                 } else {
                     showAlert("登陆失败", "用户名或密码不正确");
                 }
