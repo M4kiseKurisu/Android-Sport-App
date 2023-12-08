@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -66,7 +67,17 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
+        ImageView imageView = findViewById(R.id.button5);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    updateScrollView();
+                } catch (ParseException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
         button4 = findViewById(R.id.button4);
         button4.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,6 +93,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void updateScrollView() throws ParseException {
         LinearLayout verticalLayout = findViewById(R.id.verticalLayout);
+        verticalLayout.removeAllViews();
         ArrayList<Integer> userParticipateId = searchUserGroupId();
         ArrayList<String> userParticipateType = searchUserGroupType(userParticipateId);
         ArrayList<GroupInfo> groupInfos = searchUserRecommendedGroup(userParticipateId,userParticipateType);
@@ -227,7 +239,7 @@ public class MainActivity extends AppCompatActivity {
                 cursor.close();
             }
         }
-        System.out.println(ansLen);
+        //System.out.println(ansLen);
        /* for (int i = 0; i < ans.size(); i++) {
             System.out.println(ans.get(i));
         }*/
