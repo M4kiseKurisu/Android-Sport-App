@@ -152,7 +152,7 @@ public class ClockInActivity extends AppCompatActivity {
                     0
             );
 
-            //创建点赞数
+            //创建点赞按钮
             LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
                     60,
                     120
